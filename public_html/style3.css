@@ -32,7 +32,7 @@ html {
   flex-direction: column;
 
 
-  --bg-background: #222223;
+  --bg-background: #212224;
   //--bg-background: url(/images/blkgeo.jpg);
   --bg-load: #151517;
   --bg-button-solid: var(--c-orange);
@@ -121,8 +121,8 @@ html.color-theme-in-transition * {
 
 body {
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
+  //display: flex;
+  //flex-direction: row;
 }
 
 main {
@@ -295,6 +295,7 @@ code {
   justify-content: space-around;
   min-height: 0;
   max-width: 300px;
+  max-height: 300px;
   position: relative;
   width: 100%;
 }
@@ -499,9 +500,11 @@ code {
 
 .icon__skill {
   position: absolute;
+  transform: scale(1);
+  //filter: blur(0.3px);
   //filter: drop-shadow(0 0 0px rgba(0,0,0, .5));
   //border: 10px solid rgba(0,0,0, .5);
-  transform: scale(1);
+  
 }
 
 .icon__jd {
@@ -1000,6 +1003,51 @@ form input {
 }
 
 @media only screen and (min-width: 1300px) {
+ 
+
+   body {
+     display: flex;
+   }
+  .header, .header-spacer {
+    height: 100vh;
+    width: 80px;
+    flex-direction: column;
+  }
+  .navbar {
+    flex-direction: column;
+  }
+
+  .header__logo-frame {
+    padding-left: 0;
+  }
+
+  .navbar__tab {
+    color: var(--color-text);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-family: 'Calibri', sans-serif;
+    height: 50px;
+    left: -25px;
+    min-width: 200px;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    font-size: .85em;
+    transition: opacity .5s ease;
+    z-index: -1;
+  }
+  .navbar__icon {
+    height: 72px;
+    width: inherit;
+  }
+  .navbar__text {
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    width: inherit;
+  }
+
   .l-page__title {
     grid-column: 1 / 2;
   }
