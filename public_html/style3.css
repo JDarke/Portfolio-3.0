@@ -136,6 +136,10 @@ main {
   //transform-style: preserve-3d;
 }
 
+*[data-anijs] {
+  animation-delay: .25s;
+}
+
 h1,
 h2,
 h3,
@@ -477,12 +481,120 @@ code {
   width: 70vw;
   max-width: 350px;
   padding: 1.6em 0;
-  opacity: .9;
+  opacity: .5;
+  //position: absolute;
+  //left: 30%;
 }
 .skills-map__frame {
   display: flex;
   justify-content: center;
+  //border: 1px solid grey;
+  position: relative;
+  //height: 30vh;
+  padding-top: 60%
 }
+
+.icon__skill {
+  position: absolute;
+  //filter: drop-shadow(0 0 0px rgba(0,0,0, .5));
+  //border: 10px solid rgba(0,0,0, .5);
+  transform: scale(1);
+}
+
+.icon__jd {
+  border-radius: 50%;
+  height: auto;
+  width: 19%;
+  //left: 20%;
+  //top: 20%;
+  left: 31%;
+  top: 13%;
+  
+}
+
+.icon__html {
+  height: auto;
+  width: 16%;
+  left: 9%;
+  top: 9%;
+  animation-delay: .1s;
+}
+
+.icon__css {
+  height: auto;
+  width: 15%;
+  left: 24%;
+  top: 50%;
+  animation-delay: .2s;
+}
+
+
+.icon__js {
+  height: auto;
+  width: 15%;
+  left: 57%;
+  top: 32%;
+  animation-delay: .3s;
+}
+
+.icon__jq {
+  height: auto;
+  width: 10%;
+  left: 76%;
+  top: 45%;
+  animation-delay: .4s;
+}
+
+
+.icon__react {
+  height: auto;
+  width: 12%;
+  left: 72%;
+  top: 16%;
+  animation-delay: .5s;
+}
+
+.icon__node {
+  height: auto;
+  width: 9%;
+  left: 63%;
+  top: 63%;
+  animation-delay: .6s;
+}
+
+.icon__sass {
+  height: auto;
+  width: 8%;
+  left: 14%;
+  top: 66%;
+  animation-delay: .7s;
+}
+
+
+.icon__git {
+  height: auto;
+  width: 9%;
+  left: 81%;
+  top: 67%;
+  animation-delay: .8s;
+}
+
+.icon__php {
+  height: auto;
+  width: 7%;
+  left: 46%;
+  top: 77%;
+  animation-delay: .9s;
+}
+
+.icon__wp {
+  height: auto;
+  width: 10%;
+  left: 46%;
+  top: 53%;
+  animation-delay: 1s;
+}
+
 
 /*  Contact Form  */
 
