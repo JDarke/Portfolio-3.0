@@ -484,6 +484,31 @@ code {
   max-width: 550px;
 }
 
+
+.l-page__content--portfolio {
+
+}
+
+.l-page__title--portfolio {
+  margin: 0vw 5vw 1.2rem ;
+  grid-column: 1 / 3;
+  display: flex;
+  align-items: center;
+  
+}
+
+.l-page__text--portfolio {
+  margin:  0vw 5vw 1.2rem ;
+  display: flex;
+  flex-direction: column;
+}
+
+.l-page__feature--portfolio {
+  margin:  0vw 5vw 1.2rem ;
+  grid-column: 1 / 3;
+}
+
+
 .l-page:nth-child(even) {
   background: #101010;
   background: rgba(0,0,0, .35);
@@ -1036,6 +1061,33 @@ form input {
     grid-row: 2 / 3;
     grid-column: 2/3;
   }
+
+  .l-page__content--portfolio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: stretch;
+    align-items: center;
+  }
+
+  .l-page__title--portfolio {
+    grid-column: 1 / 2;
+    font-size: 25px;
+  }
+  .l-page__text--portfolio {
+   
+    grid-column: 1 / 2;
+  }
+  .l-page__feature--portfolio {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    margin: 0;
+  }
+  .project__outer {
+    width: 40vw;
+  }
 }
 
 @media only screen and (min-width: 1300px) {
@@ -1114,6 +1166,31 @@ form input {
     align-items: flex-end;
     justify-content:center;
   }
+
+
+  .l-page__content--portfolio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: stretch;
+    align-items: center;
+  }
+
+  .l-page__title--portfolio {
+    grid-column: 1 / 2;
+    font-size: 30px;
+  }
+  .l-page__text--portfolio {
+    
+    grid-column: 1 / 2;
+  }
+  .l-page__feature--portfolio {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
 }
 
 @media only screen and (max-width: 300px) {
