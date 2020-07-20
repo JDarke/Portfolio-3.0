@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<!--<html data-theme="light" lang="en">-->
+<html lang="en">
+  <head>
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="" />
+    <meta
+      name="msapplication-TileImage"
+      content="/favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>John Darke - Web Dev Portfolio</title>
+    <meta name="description" content="John Darke - Web Dev Portfolio" />
+    <meta name="author" content="John Darke" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Hind&family=Lato:wght@400;700&family=Montserrat:wght@800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style3.css" />
+    <link
+      rel="stylesheet"
+      href="https://anijs.github.io/lib/anicollection/anicollection.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo-frame"  data-anijs="if: mouseover, do: rubberBand animated" >
+        <a href="html/clear"
+          ><img class="header__logo" src="images/jdlogo.svg" alt="JD Logo"
+        /></a>
+      </div>
+      <div class="header__nav-wrap">
+        <div class="navbar">
+          <a class="navbar__link" href="home">
+            <div class="navbar__tab">
+              <div class="navbar__icon"></div>
+              <div class="navbar__text">Home</div>
+            </div>
+            <div id="nav-home" class="navbar__button">
+              <img
+                src="images/icon-home-active.svg"
+                alt="Home navigation button"
+              />
+            </div>
+          </a>
+          <a class="navbar__link" href="about">
+            <div class="navbar__tab">
+              <div class="navbar__icon"></div>
+              <div class="navbar__text">About</div>
+            </div>
+            <div id="nav-about" class="navbar__button">
+              <img
+                src="images/icon-about-active.svg"
+                alt="About navigation button"
+              />
+            </div>
+          </a>
+
+          <a class="navbar__link" href="work">
+            <div class="navbar__tab">
+              <div class="navbar__icon"></div>
+              <div class="navbar__text">Work</div>
+            </div>
+            <div id="nav-work" class="navbar__button">
+              <img
+                src="images/icon-work-active.svg"
+                alt="Work navigation button"
+              />
+            </div>
+          </a>
+          <a class="navbar__link" href="contact">
+            <div class="navbar__tab">
+              <div class="navbar__icon"></div>
+              <div class="navbar__text">Contact</div>
+            </div>
+            <div id="nav-contact" class="navbar__button">
+              <img
+                src="images/icon-contact-active.svg"
+                alt="Contact navigation button"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+      <div name="theme-form" class="header__switch-frame">
+        <img
+          class="header__switch"
+          src="images/contrast2.svg"
+          alt="Switch to light theme"
+        />
+      </div>
+    </header>
+    <div class="header-spacer"></div>
+    <main>
+      <div class="l-page l-page__home">
+        <div class="l-page__content">
+          <h1
+            class="home__title"
+            style="font-family: 'Montserrat', sans-serif;"
+            data-anijs="if: scroll, on: window, do: bounceInLeft animated, before: scrollReveal"
+          >
+            John
+            <br />
+            Darke
+          </h1>
+          <div class="l-page__text">
+            <p
+              class="home__tagline"
+              data-anijs="if: scroll, on: window, do: bounceInLeft animated, before: scrollReveal"
+            >
+              Front-end developer
+            </p>
+            <p></p>
+            <button
+              class="home__button button button--solid"
+              data-anijs="if: scroll, on: window, do: bounceInLeft animated, before: scrollReveal"
+            >
+              <a href="contact">Contact Me</a>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-page">
+        <div class="l-page__content l-page__about">
+          <div
+            class="title l-page__title"
+            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0;"
+          >
+            <h1>Hi, I'm John</h1>
+          </div>
+
+          <div class="l-page__feature">
+            <div
+              class="skills-map__frame"
+              data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+              style="opacity: 0;"
+            >
+              <img class="skills-map" src="images/skills.png" />
+            </div>
+          </div>
+          <div
+            class="l-page__text"
+            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0;"
+          >
+            <p data-anijs="if: click, do: flipInY animated">
+              I’m a passionate, neurodivergent <code>front-end developer</code>.
+            </p>
+
+            <p>
+              A curious person with an <code>analytical mind</code>, I enjoy
+              solving challenging problems with elegant solutions.
+            </p>
+            <p>
+              My toolkit primarily consists of <code>HTML5</code>,
+              <code>CSS3</code>, <code>Sass</code>, <code>JavaScript</code>,
+              <code>React</code>, <code>Node/npm</code>, <code>Git</code>,
+              <code>WordPress</code>, some <code>TypeScript</code> and a little
+              <code>PHP</code>, and I'm always keen to learn new skills.
+            </p>
+          </div>
+          <!--<p>The ever-changing landscape of <code>libraries and standards</code>?   Just hook that stuff up to my veins.</p>-->
+        </div>
+      </div>
+
+      <div class="l-page">
+        <!--
+        <div class="overlay">
+          <div class="details__popup-wrap">
+            <div class="details__popup">
+              <div class="close">X</div>
+              <div class="text project-text-details">
+                <h3>Dolya Consulting</h3>
+                <p>Website design & development</p>
+                <div class="madewith">
+                  <div class="madewith__icon">
+                    <img src="images/icon-html5.svg" />
+                  </div>
+                  <div class="madewith__icon">
+                    <img src="images/icon-css.svg" />
+                  </div>
+                  <div class="madewith__icon">
+                    <img src="images/icon-js.svg" />
+                  </div>
+                  <div class="madewith__icon">
+                    <img src="images/icon-jquery.svg" />
+                  </div>
+                  <div class="madewith__icon">
+                    <img src="images/icon-wp.svg" />
+                  </div>
+                  <div class="madewith__icon">
+                    <img src="images/icon-php.svg" />
+                  </div>
+                </div>
+                <div class="details__text">
+                  <p>
+                    DOLYA Consulting Ltd is a Gibraltar-based boutique
+                    consulting practice, offering business development,
+                    strategy, compliance and regulatory services.
+                  </p>
+
+                  <p>
+                    Using their logo, title font and chosen brand colours as a
+                    starting point, they wanted a site to meet the following
+                    user stories:
+                  </p>
+                  <ul>
+                    <li>
+                      Modern, long-format single-page site with responsive
+                      layout
+                    </li>
+                    <li>
+                      Contains plenty of whitespace for a light, clean feel
+                    </li>
+                    <li>The design should be responsive</li>
+                    <li>Blog section separate from the main site</li>
+                    <li>
+                      The logo motif of a golden thread should be utilised
+                      throughout the page
+                    </li>
+                  </ul>
+                  <p>
+                    They place a high value on working as a team, so all four
+                    partners were consulted throughout the design stage for
+                    their feedback.
+                  </p>
+
+                  <p>
+                    By the third draft, we’d settled on using the golden thread
+                    as a continuous element that starts at the hero screen logo
+                    and extends as an animation through each section to connect
+                    or frame every element of content.
+                  </p>
+
+                  <p>
+                    To keep the main static site lightweight, the blog was added
+                    as a separate subdomain, and uses a WordPress child theme
+                    customised to mirror the style of the main site.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>-->
+
+        <div class="l-page__content">
+          <div
+            class="l-page__title l-page__title--portfolio"
+            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0;"
+          >
+            <h1>Portfolio</h1>
+          </div>
+          <div
+            class="carousel l-page__feature"
+            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0;"
+          >
+            <!--<div class="carousel__nav--up">˄</div>
+                <div class="spacer"></div>
+                <div class="carousel__nav--down">˅</div>-->
+            <div class="carousel__inner">
+              <div class="project__outer">
+                <div class="project__inner" data-anijs="if: click, do: tada animated">
+                  <img
+                    class="project__img--lg"
+                    src="images/projectdolyalgnew.png"
+                  />
+                  <img
+                    class="project__img--sm"
+                    src="images/projectdolyasmnew.png"
+                  />
+                </div>
+              </div>
+
+              <div class="project__outer">
+                <div class="project__inner">
+                  <img
+                    class="project__img--lg"
+                    src="images/projectjdportlgnew.png"
+                  />
+                  <img
+                    class="project__img--sm"
+                    src="images/projectjdportsmnew.png"
+                  />
+                </div>
+              </div>
+
+              <div class="project__outer">
+                <div class="project__inner">
+                  <img
+                    class="project__img--lg"
+                    src="images/projecttalclg.png"
+                  />
+                  <img
+                    class="project__img--sm"
+                    src="images/projecttalcsm.png"
+                  />
+                </div>
+              </div>
+
+              <div class="project__outer">
+                <div class="project__inner">
+                  <img class="project__img--lg" src="images/projecthrlg.png" />
+                  <img class="project__img--sm" src="images/projecthrsm.png" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="text project-text l-page__text"
+            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0;"
+          >
+            <h3>Dolya Consulting</h3>
+            <p>Website design & development</p>
+            <p>
+              <!-- <a
+                  href="https://dolya.ltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="text-decoration: underline;"
+                  >https://dolya.ltd
+                  <!--<span class="linkHint">>></span></a
+                >-->
+              <!--</p> 
+              <div class="madewith">
+                <div class="madewith__icon">
+                  <img src="images/icon-html5.svg" />
+                </div>
+                <div class="madewith__icon">
+                  <img src="images/icon-css.svg" />
+                </div>
+                <div class="madewith__icon">
+                  <img src="images/icon-js.svg" />
+                </div>
+                <div class="madewith__icon">
+                  <img src="images/icon-wp.svg" />
+                </div>
+                <div class="madewith__icon">
+                  <img src="images/icon-php.svg" />
+                </div>
+              </div>-->
+
+              <code>HTML</code> • <code>CSS</code> • <code>JS</code> •
+              <code>jQ</code> • <code>WP</code>
+            </p>
+            <p class="spacer"></p>
+            <div
+              class="flex row buttons"
+              data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+              style="opacity: 0;"
+            >
+              <div class="button button--hollow" onclick="overlayToggle()">
+                <a>Details</a>
+              </div>
+
+              <div class="button button--hollow">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/JDarke/Dolya"
+                  >Code</a
+                >
+              </div>
+              <div class="button button--hollow">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/JDarke/Dolya"
+                  >Visit</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-page">
+        <div class="l-page__content l-page__content--contact">
+          <div
+            class="l-page__title"
+            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0;"
+          >
+            <h1>Contact Me</h1>
+          </div>
+
+          <div
+            class="l-page__text"
+            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0;"
+          >
+            <p>
+              I'm available for <code>freelance</code> projects or
+              <code>full-time</code> roles.
+            </p>
+
+            <p>Let's <code>work</code> together.</p>
+          </div>
+
+          <div class="l-page__feature">
+            <div class="contact-form-container">
+              <div class="contact-alert"></div>
+
+              <form
+                id="contact-form"
+                method="POST"
+                class="flex col"
+                data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+                style="opacity: 0;"
+              >
+                <input name="name" type="text" placeholder="Name" required />
+                <input
+                  id="e0"
+                  name="email0"
+                  type="email"
+                  placeholder="Email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                />
+                <input
+                  id="e1"
+                  name="email1"
+                  type="email"
+                  placeholder="Email"
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                />
+                <input
+                  name="subject"
+                  type="text"
+                  placeholder="Subject"
+                  required
+                />
+                <textarea
+                  name="message"
+                  placeholder="Message"
+                  required
+                ></textarea>
+                <input class="" type="submit" value="Submit" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(this).scrollTop(0);
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/anijs-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/helpers/dom/anijs-helper-dom-min.js"></script>
+    <script src="https://anijs.github.io/lib/anijs/helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>
+  </body>
+</html>
