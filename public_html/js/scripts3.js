@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
 })
 //window.addEventListener('scroll', throttle(scrollTest(), 1000), true);
 $(window).bind('mousewheel DOMMouseScroll touchmove', function(e){  
-
         throttle(scrollTest(e), 1000);
 });
 
@@ -91,11 +90,15 @@ function throttle(fn, wait) {
 
 window.addEventListener('resize', function(e) {
     //console.log('resize');
+    // ADD CAROUSEL RESET FUNCTION HERE
     getViewportDims()
     getSectionDims();
     setTileWidth();
     setTileHeight();
     $('.carousel__inner').css({'tansition': 'none'});
+    /*setTimeout( () => {
+        $('.carousel__inner').css({'transition': 'transform 1.2s ease, -webkit-transform 1.2s ease;'});
+    }, 1000);*/
     $('.carousel').removeClass('animated');
     $('.carousel').removeClass('fadeInUp');
     $('.carousel').css({
@@ -200,7 +203,7 @@ function scrollTest(e) {
 
 function scrollProjects(e) {
     
-    $(window).scrollTop($('#work').offset().top);
+    $(window).scrollTop($('#work').offset().top - (mobile ? 60 : 0));
     setTileHeight();
     //console.log('SP - secDim.top: ' + sectionDims[2].top + ' / ' + 'ct: ' + currentTile);
     setTileWidth();
