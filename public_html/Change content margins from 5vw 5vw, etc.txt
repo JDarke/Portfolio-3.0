@@ -1,0 +1,2 @@
+Implement new grid for portfolio section - custom build from scratch again.
+now have selective scrolling on carousel, so use it for locking.
