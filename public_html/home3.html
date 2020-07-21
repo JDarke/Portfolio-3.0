@@ -96,18 +96,21 @@
   </head>
   <body>
     <header class="header">
-      <div class="header__logo-frame"  data-anijs="if: mouseover, do: rubberBand animated" >
-        <a href="html/clear"
+      <div
+        class="header__logo-frame"
+        data-anijs="if: mouseover, do: rubberBand animated"
+      >
+        <a href="home3.html"
           ><img class="header__logo" src="images/jdlogo.svg" alt="JD Logo"
         /></a>
       </div>
       <div class="header__nav-wrap">
         <div class="navbar">
           <a class="navbar__link" href="#home">
-            <div class="navbar__tab">
+            <!-- <div class="navbar__tab">
               <div class="navbar__icon"></div>
               <div class="navbar__text">Home</div>
-            </div>
+            </div> -->
             <div id="nav-home" class="navbar__button">
               <img
                 src="images/icon-home-active.svg"
@@ -116,10 +119,10 @@
             </div>
           </a>
           <a class="navbar__link" href="#about">
-            <div class="navbar__tab">
+            <!-- <div class="navbar__tab">
               <div class="navbar__icon"></div>
               <div class="navbar__text">About</div>
-            </div>
+            </div>-->
             <div id="nav-about" class="navbar__button">
               <img
                 src="images/icon-about-active.svg"
@@ -129,10 +132,10 @@
           </a>
 
           <a class="navbar__link" href="#work">
-            <div class="navbar__tab">
+            <!-- <div class="navbar__tab">
               <div class="navbar__icon"></div>
               <div class="navbar__text">Work</div>
-            </div>
+            </div>-->
             <div id="nav-work" class="navbar__button">
               <img
                 src="images/icon-work-active.svg"
@@ -141,10 +144,10 @@
             </div>
           </a>
           <a class="navbar__link" href="#contact">
-            <div class="navbar__tab">
+            <!-- <div class="navbar__tab">
               <div class="navbar__icon"></div>
               <div class="navbar__text">Contact</div>
-            </div>
+            </div>-->
             <div id="nav-contact" class="navbar__button">
               <img
                 src="images/icon-contact-active.svg"
@@ -163,7 +166,7 @@
       </div>
     </header>
     <div class="header-spacer"></div>
-    <main>
+    <main class="scroll__container">
       <div id="home" class="l-page l-page__home">
         <div class="l-page__content">
           <h1
@@ -184,58 +187,104 @@
             </p>
             <p></p>
             <button
-              class="home__button button button--solid"
+              class="home__button button button--hollow button--cta"
               data-anijs="if: scroll, on: window, do: bounceInLeft animated, before: scrollReveal"
             >
-              <a href="contact">Contact Me</a>
+              <a href="#contact">Contact Me</a>
             </button>
           </div>
         </div>
       </div>
 
       <div id="about" class="l-page">
-        <div class="l-page__content l-page__about">
+        <div class="l-page__content--about">
           <div
-            class="title l-page__title"
+            class="title l-page__title--about"
             data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
             style="opacity: 0;"
           >
             <h1>Hi, I'm John</h1>
           </div>
 
-          <div class="l-page__feature">
+          <div class="l-page__feature--about">
             <div
               class="skills-map__frame"
               data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
               style="opacity: 0;"
             >
-            <!-- <img class="skills-map" src="images/layer 2.png" /> -->
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__jd" src="https://i.ibb.co/bB6jFyk/jdpic.jpg" alt="jdpic" border="0">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__css" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-css-style-develop-layout-language-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__react" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__html" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-html-markup-develop-layout-language-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__sass" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/sass-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__js" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-javascript-software-develop-command-language-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__jq" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-javascript-jquery-develop-framework-language-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__wp" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/wordpress-cms-word-blog-page-web-design-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__node" src="https://cdn0.iconfinder.com/data/icons/designer-skills/128/node-js-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__php" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-php-software-develop-command-language-512.png">
-            <img data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-            style="opacity: 0;" class="icon__skill icon__git" src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/github-repository-svn-manage-files-contribute-branch-512.png">
+              <!-- <img class="skills-map" src="images/layer 2.png" /> -->
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__jd"
+                src="https://i.ibb.co/bB6jFyk/jdpic.jpg"
+                alt="jdpic"
+                border="0"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__css"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-css-style-develop-layout-language-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__react"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__html"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-html-markup-develop-layout-language-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__sass"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/sass-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__js"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-javascript-software-develop-command-language-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__jq"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-javascript-jquery-develop-framework-language-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__wp"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/wordpress-cms-word-blog-page-web-design-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__node"
+                src="https://cdn0.iconfinder.com/data/icons/designer-skills/128/node-js-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__php"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-php-software-develop-command-language-512.png"
+              />
+              <img
+                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
+                style="opacity: 0;"
+                class="icon__skill icon__git"
+                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/github-repository-svn-manage-files-contribute-branch-512.png"
+              />
             </div>
           </div>
           <div
-            class="l-page__text"
+            class="l-page__text--about"
             data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
             style="opacity: 0;"
           >
@@ -260,185 +309,92 @@
       </div>
 
       <div id="work" class="l-page">
-        <!--
-        <div class="overlay">
-          <div class="details__popup-wrap">
-            <div class="details__popup">
-              <div class="close">X</div>
-              <div class="text project-text-details">
-                <h3>Dolya Consulting</h3>
-                <p>Website design & development</p>
-                <div class="madewith">
-                  <div class="madewith__icon">
-                    <img src="images/icon-html5.svg" />
-                  </div>
-                  <div class="madewith__icon">
-                    <img src="images/icon-css.svg" />
-                  </div>
-                  <div class="madewith__icon">
-                    <img src="images/icon-js.svg" />
-                  </div>
-                  <div class="madewith__icon">
-                    <img src="images/icon-jquery.svg" />
-                  </div>
-                  <div class="madewith__icon">
-                    <img src="images/icon-wp.svg" />
-                  </div>
-                  <div class="madewith__icon">
-                    <img src="images/icon-php.svg" />
-                  </div>
-                </div>
-                <div class="details__text">
-                  <p>
-                    DOLYA Consulting Ltd is a Gibraltar-based boutique
-                    consulting practice, offering business development,
-                    strategy, compliance and regulatory services.
-                  </p>
-
-                  <p>
-                    Using their logo, title font and chosen brand colours as a
-                    starting point, they wanted a site to meet the following
-                    user stories:
-                  </p>
-                  <ul>
-                    <li>
-                      Modern, long-format single-page site with responsive
-                      layout
-                    </li>
-                    <li>
-                      Contains plenty of whitespace for a light, clean feel
-                    </li>
-                    <li>The design should be responsive</li>
-                    <li>Blog section separate from the main site</li>
-                    <li>
-                      The logo motif of a golden thread should be utilised
-                      throughout the page
-                    </li>
-                  </ul>
-                  <p>
-                    They place a high value on working as a team, so all four
-                    partners were consulted throughout the design stage for
-                    their feedback.
-                  </p>
-
-                  <p>
-                    By the third draft, we’d settled on using the golden thread
-                    as a continuous element that starts at the hero screen logo
-                    and extends as an animation through each section to connect
-                    or frame every element of content.
-                  </p>
-
-                  <p>
-                    To keep the main static site lightweight, the blog was added
-                    as a separate subdomain, and uses a WordPress child theme
-                    customised to mirror the style of the main site.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>-->
-
-        <div class="l-page__content">
+      <!--<div class="scroll-lock"></div>-->
+        <div class="l-page__content--portfolio">
           <div
-            class="l-page__title l-page__title--portfolio"
+            class="l-page__title--portfolio"
             data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
             style="opacity: 0;"
           >
             <h1>Portfolio</h1>
           </div>
-          <div
-            class="carousel l-page__feature"
-            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
-            style="opacity: 0;"
-          >
-            <!--<div class="carousel__nav--up">˄</div>
-                <div class="spacer"></div>
-                <div class="carousel__nav--down">˅</div>-->
-            <div class="carousel__inner">
-              <div class="project__outer">
-                <div class="project__inner" data-anijs="if: click, do: tada animated">
-                  <img
-                    class="project__img--lg"
-                    src="images/projectdolyalgnew.png"
-                  />
-                  <img
-                    class="project__img--sm"
-                    src="images/projectdolyasmnew.png"
-                  />
-                </div>
-              </div>
+          <div class="l-page__feature--portfolio">
+            <div
+              class="carousel"
+              data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+              style="opacity: 0;"
+            >
+              <div class="carousel__nav-wrap">
+                <div class="carousel__nav--up">&#8227;</div>
 
-              <div class="project__outer">
-                <div class="project__inner">
-                  <img
-                    class="project__img--lg"
-                    src="images/projectjdportlgnew.png"
-                  />
-                  <img
-                    class="project__img--sm"
-                    src="images/projectjdportsmnew.png"
-                  />
-                </div>
+                <div class="carousel__nav--down">&#8227;</div>
               </div>
-
-              <div class="project__outer">
-                <div class="project__inner">
-                  <img
-                    class="project__img--lg"
-                    src="images/projecttalclg.png"
-                  />
-                  <img
-                    class="project__img--sm"
-                    src="images/projecttalcsm.png"
-                  />
+              <div class="carousel__inner">
+                <div class="project__outer">
+                  <div
+                    class="project__inner"
+                    data-anijs="if: click, do: tada animated"
+                  >
+                    <img
+                      class="project__img--lg"
+                      src="images/projectdolyalgnew.png"
+                    />
+                    <img
+                      class="project__img--sm"
+                      src="images/projectdolyasmnew.png"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div class="project__outer">
-                <div class="project__inner">
-                  <img class="project__img--lg" src="images/projecthrlg.png" />
-                  <img class="project__img--sm" src="images/projecthrsm.png" />
+                <div class="project__outer">
+                  <div class="project__inner">
+                    <img
+                      class="project__img--lg"
+                      src="images/projectjdportlgnew.png"
+                    />
+                    <img
+                      class="project__img--sm"
+                      src="images/projectjdportsmnew.png"
+                    />
+                  </div>
+                </div>
+
+                <div class="project__outer">
+                  <div class="project__inner">
+                    <img
+                      class="project__img--lg"
+                      src="images/projecttalclg.png"
+                    />
+                    <img
+                      class="project__img--sm"
+                      src="images/projecttalcsm.png"
+                    />
+                  </div>
+                </div>
+
+                <div class="project__outer">
+                  <div class="project__inner">
+                    <img
+                      class="project__img--lg"
+                      src="images/projecthrlg.png"
+                    />
+                    <img
+                      class="project__img--sm"
+                      src="images/projecthrsm.png"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
           <div
-            class="text project-text l-page__text"
+            class="text project-text l-page__text--portfolio"
             data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
             style="opacity: 0;"
           >
             <h3>Dolya Consulting</h3>
             <p>Website design & development</p>
             <p>
-              <!-- <a
-                  href="https://dolya.ltd"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style="text-decoration: underline;"
-                  >https://dolya.ltd
-                  <!--<span class="linkHint">>></span></a
-                >-->
-              <!--</p> 
-              <div class="madewith">
-                <div class="madewith__icon">
-                  <img src="images/icon-html5.svg" />
-                </div>
-                <div class="madewith__icon">
-                  <img src="images/icon-css.svg" />
-                </div>
-                <div class="madewith__icon">
-                  <img src="images/icon-js.svg" />
-                </div>
-                <div class="madewith__icon">
-                  <img src="images/icon-wp.svg" />
-                </div>
-                <div class="madewith__icon">
-                  <img src="images/icon-php.svg" />
-                </div>
-              </div>-->
-
               <code>HTML</code> • <code>CSS</code> • <code>JS</code> •
               <code>jQ</code> • <code>WP</code>
             </p>
@@ -476,7 +432,7 @@
       <div id="contact" class="l-page">
         <div class="l-page__content l-page__content--contact">
           <div
-            class="l-page__title"
+            class="l-page__title l-page__title--contact"
             data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
             style="opacity: 0;"
           >
@@ -496,7 +452,7 @@
             <p>Let's <code>work</code> together.</p>
           </div>
 
-          <div class="l-page__feature">
+          <div class="l-page__feature l-page__feature--contact">
             <div class="contact-form-container">
               <div class="contact-alert"></div>
 
@@ -534,7 +490,11 @@
                   placeholder="Message"
                   required
                 ></textarea>
-                <input class="" type="submit" value="Submit" />
+                <input
+                  class="button button--hollow button--cta"
+                  type="submit"
+                  value="Send"
+                />
               </form>
             </div>
           </div>
@@ -548,7 +508,7 @@
         $(this).scrollTop(0);
       });
     </script>
-    <script src="./js/scripts.js"></script>
+    <script src="./js/scripts3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/anijs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/helpers/dom/anijs-helper-dom-min.js"></script>
