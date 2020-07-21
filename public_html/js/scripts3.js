@@ -47,16 +47,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
         slideProjects('fwd');
     });
     
-    $('.l-page__content--portfolio').bind('touchstart', function(e) {
+    $('.carousel').bind('touchstart', function(e) {
         touchStart = e.originalEvent.touches[0].clientX;
     });
     
-    $('.l-page__content--portfolio').bind('mousewheel DOMMouseScroll touchmove', function(e){  
+    $('.carousel').bind('mousewheel DOMMouseScroll touchmove', function(e){  
+        console.log('scroooolll')
         scrollProjects(e);
+        e.preventDefault();
     });
 })
 
 window.addEventListener('scroll', function(e) {
+    console.log('work offsetTop: ' + $('#work').offset().top);
+    console.log('sectionDims[2].top: ' + sectionDims[2].top)
+    console.log('currentTilePosOffset: ' + Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().top))
     scrollTest();
     //console.log(currentSection);
 });
@@ -120,8 +125,9 @@ function scrollProjects(e) {
     } else {
         tileFinishedMove = function() {
             var currentTileTop = Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().top);
-            
-            return ( currentTileTop === 0 );  // returns true if current tile top is equal to carousel area top.
+            getSectionDims();
+            //console.log('currentTileTop: ' + currentTileTop +  'workOffsetTop.top: ' + document.getElementById('work').offset().top)
+            return ( currentTileTop === $('#work').offset().top );  // returns true if current tile top is equal to carousel area top.
         };
     }
     
@@ -162,7 +168,7 @@ function slideProjects(dir) {
         slideX('.carousel__inner', '-' + ((next - 1) * tileWidth) + 'px');                            // slide entire carousel up/down one tile height, -1 for zero-indexed multiplier
         
         setTimeout( () => {
-            fadeIn('.project-text');
+            //fadeIn('.project-text');
         }, 700);
         setTimeout(/*getProjectInfo*/ console.log('get project info here'), 500);
         
@@ -176,7 +182,7 @@ function slideProjects(dir) {
         } else if (dir == 'back') {
             next = currentTile - 1;
         }
-        fadeOut('.project-text');                                                               
+        //fadeOut('.project-text');                                                               
         fadeOut('.project__outer:nth-child(' + currentTile + ')');                              // fade out current project tile
         slideY('.project__outer:nth-child(' + currentTile + ') .project__img--sm', slideTo + 'px');    // slide current project mobile img for parallax effect as carousel moves
         fadeIn('.project__outer:nth-child(' + next + ')');                                      // fade in next project
@@ -184,7 +190,7 @@ function slideProjects(dir) {
         slideY('.carousel__inner', '-' + ((next - 1) * tileHeight) + 'px');                            // slide entire carousel up/down one tile height, -1 for zero-indexed multiplier
         
         setTimeout( () => {
-            fadeIn('.project-text');
+            //fadeIn('.project-text');
         }, 700);
         setTimeout(/*getProjectInfo*/ null, 500);
         
@@ -221,18 +227,29 @@ function setTileHeight() {
     if (!mobile) {
             
         $('.project__outer').css({
-            height: tileHeight 
+            height: tileHeight,
+
         });
         $('.carousel__inner').css({
-            height: tileHeight * (numProjects - 1),
+            //height: tileHeight * (numProjects),
             transform : 'translateY(-' + ((currentTile - 1) * tileHeight) + 'px)'
         });
     }   
 }
 function setTileWidth() {
     if (mobile) {
-        tileWidth = $('.project__outer').width();  
+        tileWidth = $('.carousel').width();  
+             
+        $('.project__outer').css({
+            height: 'auto',
+            width: tileWidth
+        });
+        $('.carousel__inner').css({
+            height: 'auto',
+            transform : 'translateX(-' + ((currentTile - 1) * tileWidth) + 'px)'
+        });
     }
+
 }
 
 
@@ -244,7 +261,7 @@ function setPageHeight() {
        height: tileHeight 
     });
     $('.carousel__inner').css({
-       height: tileHeight * (numProjects - 1),
+       height: tileHeight * (numProjects),
        transform : 'translateY(-' + ((currentTile - 1) * tileHeight) + 'px)'
     });
 }
