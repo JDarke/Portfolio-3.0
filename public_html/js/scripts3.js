@@ -56,6 +56,15 @@ document.addEventListener('DOMContentLoaded', function(event) {
         scrollProjects(e);
         e.preventDefault();
     });
+    /*$('.l-page').bind('mousewheel DOMMouseScroll touchmove', function(e){
+        
+        console.log('before: ' + currentPage);
+        if (!mobile) {
+            scrollContainer(e);
+        }
+        console.log('after: ' + currentPage);
+        
+    });*/
 })
 
 window.addEventListener('scroll', function(e) {
@@ -148,6 +157,7 @@ function slideProjects(dir) {
     getViewportDims();
     setTileHeight();
     setTileWidth();
+    $('.carousel__inner').css({'tansition': 'transform 1.2s ease'});
     //console.log('tileWidth: ' + tileWidth );
     var next;
     var slideTo;
@@ -159,6 +169,8 @@ function slideProjects(dir) {
         } else if (dir == 'back') {
             next = currentTile - 1;
         }
+        $('.project-text').removeClass('fadeInUp');
+        $('.project-text').removeClass('animated');
         
         fadeOut('.project-text');                                                               
         fadeOut('.project__outer:nth-child(' + currentTile + ')');                              // fade out current project tile
@@ -168,9 +180,9 @@ function slideProjects(dir) {
         slideX('.carousel__inner', '-' + ((next - 1) * tileWidth) + 'px');                            // slide entire carousel up/down one tile height, -1 for zero-indexed multiplier
         
         setTimeout( () => {
-            //fadeIn('.project-text');
+            fadeIn('.project-text');
         }, 700);
-        setTimeout(/*getProjectInfo*/ console.log('get project info here'), 500);
+        setTimeout(null, 500);
         
         currentTile = next;
         checkCurrentTile();
@@ -182,7 +194,12 @@ function slideProjects(dir) {
         } else if (dir == 'back') {
             next = currentTile - 1;
         }
-        //fadeOut('.project-text');                                                               
+        $('.project-text').removeClass('fadeInUp');
+        $('.project-text').removeClass('animated');
+        $('.project-text').css({
+            transition: 'opacity 0.5s ease'
+        })
+        fadeOut('.project-text');                                                               
         fadeOut('.project__outer:nth-child(' + currentTile + ')');                              // fade out current project tile
         slideY('.project__outer:nth-child(' + currentTile + ') .project__img--sm', slideTo + 'px');    // slide current project mobile img for parallax effect as carousel moves
         fadeIn('.project__outer:nth-child(' + next + ')');                                      // fade in next project
@@ -190,13 +207,14 @@ function slideProjects(dir) {
         slideY('.carousel__inner', '-' + ((next - 1) * tileHeight) + 'px');                            // slide entire carousel up/down one tile height, -1 for zero-indexed multiplier
         
         setTimeout( () => {
-            //fadeIn('.project-text');
+            fadeIn('.project-text');
         }, 700);
-        setTimeout(/*getProjectInfo*/ null, 500);
+        setTimeout(null, 500);
         
         currentTile = next;
         checkCurrentTile();
     }
+    $('.carousel__inner').css({'tansition': 'none'});
     console.log('currentTile: ' + currentTile + ' / '+  'tileWidth: ' + tileWidth + ' / ' + 'tileHeight: ' + tileHeight + ' / ' + slideTo)
 }
 
@@ -228,7 +246,7 @@ function setTileHeight() {
             
         $('.project__outer').css({
             height: tileHeight,
-
+            width: '40vw'
         });
         $('.carousel__inner').css({
             //height: tileHeight * (numProjects),
@@ -252,11 +270,24 @@ function setTileWidth() {
 
 }
 
+function getProjectInfo() {
+    $.getJSON('portfolio.json', function(portfolio) {
+        var project = portfolio['project' + (currentTile) ];
+        var madeWith = "";
+        var i;
+        for (i=0; i < project.madewith.length; i++) {
+            madeWith = madeWith + '<code>' + project.madewith[i] + '</code>';
+            madeWith = i < project.madewith.length - 1 ?  madeWith +  ' • ': madeWith
+        }
+        $('.project-text').html('<h3>' + project.title + '</h3><p>' + project.description + '</p><p>' + madeWith + '</p><p class="spacer"></p><div class="flex row buttons"><div class="button button--hollow" onclick="overlayToggle()"><a>Details</a></div><div class="button button--hollow"><a target="_blank" rel="noopener noreferrer" href="http://' + project.codelink + '">View Code</a></div></div>');
+        //$('.project-text-details').html('<h3>' + project.title + '</h3><p>' + project.description + '</p><div class="madewith">' + madeWith + '</div><div class="details__text">' + project.details + '</div>');
+    });
+}
 
 
 
 function setPageHeight() {
-    tileHeight = $('.scroll__container').height();
+    tileHeight = $('.carousel').height();
     $('.project__outer').css({
        height: tileHeight 
     });
@@ -266,11 +297,63 @@ function setPageHeight() {
     });
 }
 
+
+/*
+function scrollContainer(e) {
+    console.log($('.l-page:nth-child(' + currentPage + ')' ).offset().top);
+    const getDelta = function(e) {
+        if (e.originalEvent.changedTouches) {
+            var touchEnd = e.originalEvent.changedTouches[0].clientY;
+            return touchEnd - touchStart;
+        } else {
+            return e.originalEvent.wheelDelta;
+        }
+    };
+    
+    const pageFinishedMove = function() {
+        var currentPageTop = Math.round($('.l-page:nth-child(' + currentPage + ')' ).offset().top);
+        return ( currentPageTop === 0 );  // returns true if current page top is equal to container area top.
+    };
+    
+    if ( pageFinishedMove() ) {
+        if(getDelta(e) <= 0) {
+            scrollPages('fwd');
+        } else {
+            scrollPages('back')
+        }
+    }
+}
+
+function scrollPages(str) {   
+    var next;
+    if (str == 'fwd') {
+        next = currentPage + 1;
+    } else if (str == 'back') {
+        next = currentPage - 1;
+    }
+    if (next < 1) {
+        next = 1;
+    } 
+    if (next > 4) {
+        next = 4;
+    } 
+    slideY('.scroll__container', '-' + ((next - 1) * 100) + 'vh');              // slide entire carousel up/down one tile height, -1 for zero-indexed multiplier
+    
+   
+    currentPage = next;
+}
+*/
+
+
 function fadeIn(selector) {
+    $(selector).removeClass('fadeInUp');
+    $(selector).removeClass('animated');
     $(selector).css({opacity : '1'});
 }
 
 function fadeOut(selector) {
+    $(selector).removeClass('fadeInUp');
+    $(selector).removeClass('animated');
     $(selector).css({opacity : '0'});
 }
 

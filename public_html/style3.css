@@ -125,6 +125,7 @@ body {
   //flex-direction: row;
 }
 
+
 main {
   display: flex;
   flex-direction: column;
@@ -314,7 +315,7 @@ code {
   position: relative;
   width: 100%;
   z-index: 6;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 .navbar__button {
@@ -837,7 +838,7 @@ form input {
 /* Work Section */
 
 #work {
-  padding: 0;
+ 
 }
 
 .madewith {
@@ -1043,7 +1044,25 @@ form input {
   h1 {
     font-size: 160px;
   }
+/*
+  .scroll__container {
+    position: relative;
+    transform: translateY(0vh);
+    transition: transform 1s ease;  
+  }
 
+  body {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: contain;
+    overflow: hidden;
+  }*/
+
+  #work {
+    padding: 0;
+  }
   .carousel {
     //outline: 1px solid red;
     //overflow: hidden;
@@ -1131,27 +1150,31 @@ form input {
 
   .l-page__content--portfolio {
     display: flex;
-    //display: grid;
-    //grid-template-columns: 1fr 1fr;
-    //grid-template-rows: auto auto;
-    //grid-column-gap: 20px;
-    //grid-row-gap: 20px;
-    justify-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    //justify-items: stretch;
     align-items: center;
   }
 
   .l-page__title--portfolio {
     grid-column: 1 / 2;
     font-size: 25px;
+    grid-row: 1;
+    align-self: flex-end;
   }
   .l-page__text--portfolio {
-   
+    order: 3;
+    grid-row: 2;
     grid-column: 1 / 2;
+    align-self: flex-start;
   }
   .l-page__feature--portfolio {
-    /*grid-column: 2;
+    grid-column: 2;
     grid-row: 1 / 3;
-    margin: 0;
+    /*margin: 0;
     height: 100%;
     display: flex;*/
     display: flex;
