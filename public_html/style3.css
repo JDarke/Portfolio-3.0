@@ -138,8 +138,9 @@ main {
   //transform-style: preserve-3d;
 }
 
-*[data-anijs] {
+*[data-anijs]:not(.carousel > *) {
   animation-delay: .25s;
+  opacity: 0;
 }
 
 h1,
@@ -840,7 +841,11 @@ form input {
 #work {
  
 }
-
+.scroll-lock {
+  position: absolute;
+  outline: 1px solid red;
+  z-index: 6;
+}
 .madewith {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1063,6 +1068,11 @@ form input {
   #work {
     padding: 0;
   }
+
+  .scroll-lock {
+    width: 100%;
+    height: 100%;
+  }
   .carousel {
     //outline: 1px solid red;
     //overflow: hidden;
@@ -1198,57 +1208,59 @@ form input {
     align-self: flex-start;
     grid-row: 1;
   }
+  body {
+    display: flex;
+  }
+ .header, .header-spacer {
+   height: 100vh;
+   width: 80px;
+   flex-direction: column;
+ }
+ .navbar {
+   flex-direction: column;
+ }
+
+ .header__logo-frame {
+   padding-left: 0;
+ }
+
+ .navbar__tab {
+   color: var(--color-text);
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   font-family: 'Calibri', sans-serif;
+   height: 50px;
+   left: -25px;
+   min-width: 200px;
+   opacity: 0;
+   pointer-events: none;
+   position: absolute;
+   font-size: .85em;
+   transition: opacity .5s ease;
+   z-index: -1;
+ }
+ .navbar__icon {
+   height: 72px;
+   width: inherit;
+ }
+ .navbar__text {
+   height: 60px;
+   margin: 0;
+   padding: 0;
+   width: inherit;
+ }
+ .l-page {
+   height: 100vh;
+   min-height: 0;
+   //min-height: 100vh;
+ }
 }
 
 @media only screen and (min-width: 1300px) {
   
 
-   body {
-     display: flex;
-   }
-  .header, .header-spacer {
-    height: 100vh;
-    width: 80px;
-    flex-direction: column;
-  }
-  .navbar {
-    flex-direction: column;
-  }
-
-  .header__logo-frame {
-    padding-left: 0;
-  }
-
-  .navbar__tab {
-    color: var(--color-text);
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    font-family: 'Calibri', sans-serif;
-    height: 50px;
-    left: -25px;
-    min-width: 200px;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    font-size: .85em;
-    transition: opacity .5s ease;
-    z-index: -1;
-  }
-  .navbar__icon {
-    height: 72px;
-    width: inherit;
-  }
-  .navbar__text {
-    height: 60px;
-    margin: 0;
-    padding: 0;
-    width: inherit;
-  }
-  .l-page {
-    height: 100vh;
-    //min-height: 100vh;
-  }
+  
   .l-page__title {
     grid-column: 1 / 2;
   }

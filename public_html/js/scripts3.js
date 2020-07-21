@@ -50,12 +50,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
     $('.carousel').bind('touchstart', function(e) {
         touchStart = e.originalEvent.touches[0].clientX;
     });
-    
-    $('.carousel').bind('mousewheel DOMMouseScroll touchmove', function(e){  
-        console.log('scroooolll')
-        scrollProjects(e);
-        e.preventDefault();
+    $(window).bind('click', function(e) {
+        console.log(sectionDims[2].top);
     });
+    
+    
     /*$('.l-page').bind('mousewheel DOMMouseScroll touchmove', function(e){
         
         console.log('before: ' + currentPage);
@@ -66,13 +65,24 @@ document.addEventListener('DOMContentLoaded', function(event) {
         
     });*/
 })
-
+/*
 window.addEventListener('scroll', function(e) {
-    console.log('work offsetTop: ' + $('#work').offset().top);
-    console.log('sectionDims[2].top: ' + sectionDims[2].top)
-    console.log('currentTilePosOffset: ' + Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().top))
-    scrollTest();
+    //console.log('work offsetTop: ' + $('#work').offset().top);
+    //console.log('sectionDims[2].top: ' + sectionDims[2].top)
+   // console.log('currentTilePosOffset: ' + Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().top))
+    scrollTest(e);
     //console.log(currentSection);
+});
+
+*/
+
+$(window).bind('mousewheel DOMMouseScroll touchmove', function(e){  
+
+        //console.log('work offsetTop: ' + $('#work').offset().top);
+        //console.log('sectionDims[2].top: ' + sectionDims[2].top)
+       // console.log('currentTilePosOffset: ' + Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().top))
+        scrollTest(e);
+        //console.log(currentSection);
 });
 
 window.addEventListener('resize', function(e) {
@@ -81,8 +91,44 @@ window.addEventListener('resize', function(e) {
     getSectionDims();
     setTileWidth();
     setTileHeight();
+    $('.carousel__inner').css({'tansition': 'none'});
+    $('.carousel').removeClass('animated');
+    $('.carousel').removeClass('fadeInUp');
+    $('.carousel').css({
+        opacity: '1',
+        transition: 'none'
+    });
 });
 
+function scrollLock() {
+    var target = $('#work').offset().top;
+    var scrollOptions = {
+        left: 0,
+        top: target,
+        behavior: 'auto'
+      }
+
+    console.log('lock');
+    $('html').css({
+        'scroll-behavior': 'smooth'
+    })
+    //window.scrollTo(scrollOptions);
+    $(window).scrollTop(target);
+    //$('html').css({
+    //    'scroll-behavior': 'smooth'
+    //})
+    
+    $('#work').bind('mousewheel DOMMouseScroll touchmove', function(e){  
+        console.log('boundScroll');
+        scrollProjects(e);
+        e.preventDefault();
+    });
+}
+
+function scrollUnlock() {
+   console.log('unlock');
+    $('#work').unbind('mousewheel DOMMouseScroll touchmove');
+}
 
 function getViewportDims() {
     viewportWidth = $(window).width();                                          //move this inside of checkview() if not needed in this scope
@@ -92,8 +138,43 @@ function getViewportDims() {
     } else mobile = false;
 }
 
-function scrollTest() {
+function scrollTest(e) {
     getSectionDims();
+    var x = $('#work');
+    console.log('scDimsTop:' + sectionDims[2].top);
+    
+    const getDelta = function(e) {
+        if (e.originalEvent.changedTouches) {
+            var touchEnd = e.originalEvent.changedTouches[0].clientX;
+            return touchEnd - touchStart;
+        } else {
+            return e.originalEvent.wheelDelta;
+        }
+    };
+    //console.log(getDelta(e));
+    //console.log('secDim.top: ' + sectionDims[2].top + ' / ' + 'ct: ' + currentTile);
+    /*if (sectionDims[2].top <= 0 && currentTile < 4) {
+        scrollLock();
+    } else {
+        scrollUnlock();
+    }*/
+    
+        if(getDelta(e) <= 0) {   // if scrolling down
+            if (currentTile < numProjects && sectionDims[2].top <= (0 + (0 - getDelta(e)))) {  // 
+                scrollLock();
+                //console.log('scrollFwd');
+            } else {
+                    scrollUnlock();
+            }
+        } else if (currentTile > 1 && sectionDims[2].top > (0 + (0 - getDelta(e))) ) {  //if scrolling up
+            scrollLock();
+            //console.log('scrollBack');
+        } else {
+            scrollUnlock();
+        }
+    
+
+
     for (var i = 0; i < sectionDims.length; i++) {
         if (sectionDims[i].top < (window.innerHeight - (sectionDims[i].height/1.8)) && sectionDims[i].bottom >= 0) {
             currentSection = sectionDims[i].name;
@@ -104,7 +185,8 @@ function scrollTest() {
             navButtons[i].style.opacity = '.8';
             navButtons[i].style.filter = 'grayscale(0)';
         }
-    } 
+    }
+
 }
 
 
@@ -112,11 +194,12 @@ function scrollTest() {
 
 function scrollProjects(e) {
     setTileHeight();
+    //console.log('SP - secDim.top: ' + sectionDims[2].top + ' / ' + 'ct: ' + currentTile);
     setTileWidth();
     if (currentTile < 1) {
         currentTile = 1;
     } 
-    let tileFinishedMove;
+    //let tileFinishedMove = ();
     const getDelta = function(e) {
         if (e.originalEvent.changedTouches) {
             var touchEnd = e.originalEvent.changedTouches[0].clientX;
@@ -126,6 +209,18 @@ function scrollProjects(e) {
         }
     };
     
+    const tileFinishedMove = function() {
+        getSectionDims();
+        var currentTileLeft = Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().left);
+        var currentTileTop = Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().top);
+        if (mobile) {
+            return ( currentTileLeft === 0 );  // returns true if current tile top is equal to carousel area top.
+        } else {
+            console.log('currentTileTop: ' + currentTileTop +  'workOffsetTop.top: ' + $('#work').offset().top)
+            return ( currentTileTop === Math.round($('#work').offset().top ));
+        }
+    };
+    /*
     if (mobile) {
         tileFinishedMove = function() {
             var currentTileLeft = Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().left);
@@ -134,26 +229,34 @@ function scrollProjects(e) {
     } else {
         tileFinishedMove = function() {
             var currentTileTop = Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().top);
+            console.log('tileFinMoveCheck');
             getSectionDims();
             //console.log('currentTileTop: ' + currentTileTop +  'workOffsetTop.top: ' + document.getElementById('work').offset().top)
             return ( currentTileTop === $('#work').offset().top );  // returns true if current tile top is equal to carousel area top.
         };
-    }
+    }*/
     
     if ( tileFinishedMove() ) {
+        console.log('tileFinMoveCheckPass');
         if(getDelta(e) <= 0) {
             if (currentTile < numProjects) {  //check numbers-1?
                 slideProjects('fwd');
-                console.log('scrollFwd');
+                //console.log('scrollFwd');
+            } else {
+                    scrollUnlock();
             }
         } else if (currentTile > 1) {
             slideProjects('back');
-            console.log('scrollBack');
+            //console.log('scrollBack');
+        } else {
+            scrollUnlock();
         }
+
     }
 }
 
 function slideProjects(dir) {
+    
     getViewportDims();
     setTileHeight();
     setTileWidth();
@@ -161,6 +264,9 @@ function slideProjects(dir) {
     //console.log('tileWidth: ' + tileWidth );
     var next;
     var slideTo;
+    $('.carousel__inner').css({
+        transition: 'transform 1.2s ease;'
+    })
     if (mobile) {
         slideTo = tileWidth;
         if (dir == 'fwd') {
@@ -181,7 +287,9 @@ function slideProjects(dir) {
         
         setTimeout( () => {
             fadeIn('.project-text');
+            
         }, 700);
+        
         setTimeout(null, 500);
         
         currentTile = next;
@@ -199,6 +307,7 @@ function slideProjects(dir) {
         $('.project-text').css({
             transition: 'opacity 0.5s ease'
         })
+        
         fadeOut('.project-text');                                                               
         fadeOut('.project__outer:nth-child(' + currentTile + ')');                              // fade out current project tile
         slideY('.project__outer:nth-child(' + currentTile + ') .project__img--sm', slideTo + 'px');    // slide current project mobile img for parallax effect as carousel moves
@@ -206,16 +315,22 @@ function slideProjects(dir) {
         slideY('.project__outer:nth-child(' + next + ') .project__img--sm', '0px');            // slide next project mobile img for parallax
         slideY('.carousel__inner', '-' + ((next - 1) * tileHeight) + 'px');                            // slide entire carousel up/down one tile height, -1 for zero-indexed multiplier
         
+
+
         setTimeout( () => {
             fadeIn('.project-text');
+        
         }, 700);
+        
+
         setTimeout(null, 500);
         
         currentTile = next;
         checkCurrentTile();
+        
     }
     $('.carousel__inner').css({'tansition': 'none'});
-    console.log('currentTile: ' + currentTile + ' / '+  'tileWidth: ' + tileWidth + ' / ' + 'tileHeight: ' + tileHeight + ' / ' + slideTo)
+    //console.log('currentTile: ' + currentTile + ' / '+  'tileWidth: ' + tileWidth + ' / ' + 'tileHeight: ' + tileHeight + ' / ' + slideTo)
 }
 
 function checkCurrentTile() {
