@@ -1,0 +1,47 @@
+{
+    "project1": {
+        "title" : "Dolya Consulting",
+        "description" : "Responsive Website & Blog",
+        "madewith" : ["html5", "css", "js", "php", "wp"],
+        "codelink" : "github.com/JDarke/Dolya",
+        "codelinktext" : "github.com/JDarke/Dolya",
+        "url" : "dolya.ltd",
+        "details" : "<p>DOLYA Consulting Ltd is a Gibraltar-based boutique consulting practice, offering business development, strategy, compliance and regulatory services.</p><p>Using their logo, title font and chosen brand colours as a starting point, they wanted a site to meet the following brief:</p><ul><li>Modern, long-format single-page site with responsive layout</li><li>Contains plenty of whitespace for a light, clean feel</li><li>The design should be responsive</li><li>The user journey should have a linear, narrative feel, as the user scrolls through the site</li><li>Blog section separate from the main site</li><li>The logo motif of a golden thread should be utilised throughout the page</li></ul><p>They place a high value on working as a team, so all four partners were consulted throughout the design stage for their feedback.</p><p>By the third draft, we’d settled on using the golden thread as a continuous element that starts at the hero screen logo and extends as an animation through each section to connect or frame every element of content.</p><p>To keep the main static site lightweight, the blog was added as a separate subdomain, and uses a WordPress child theme customised to mirror the style of the main site.</p>"
+    },
+    "project2": {
+        "title" : "This Portfolio Site",
+        "description" : "Responsive Website",
+        "madewith" : ["html5", "css", "js", "php"],
+        "codelink" : "github.com/JDarke/Portfolio",
+        "codelinktext" : "github.com/JDarke/Portfolio",
+        "url" : "johndarke.net/home.php",
+        "details" : "<p>The site you’re currently viewing was made from scratch with HTML/CSS/Javacript, with some PHP thrown in for the header, form handling and session theme settings.</p><p>The page load and carousel animations are CSS transform transitions directed by JavaScript, and the carousel was custom built for purpose. <p>The site is a stepping stone to the React web app version, currently in development. </p> <p>This new single-page format will allow seamless transitions between content sections, resulting in a smoother user experience as well as reduced load times. </p>"
+    },
+    "project3": {
+        "title" : "Talculator",
+        "description" : "React Web App",
+        "work" : "Design & Development",
+        "codelink" : "github.com/JDarke/Talculator",
+        "codelinktext" : "github.com/JDarke/Talculator",
+        "url" : "talculator.herokuapp.com",
+        "madewith" : ["html5", "css", "js", "react", "nodejs"],
+        "details" : "<p>A simple calculator with a soft, white theme.</p> <p>Oddly satisfying to use.</p>  <p>Talculator is a web app built as an excercise in React app development and deployment, as well as demonstrating the power of subtle CSS shadows and gradients in bringing a UI to life.</p>"
+    },
+    "project4": {
+        "title" : "HospitalRun",
+        "description" : "Contributor to OSS Project",
+        "madewith" : ["html5", "css", "js", "react", "typescript", "nodejs"],
+        "codelink" : "github.com/JDarke?tab=repositories&q=hospitalrun",
+        "codelinktext" : "github.com/JDarke/hospitalrun",
+        "url" : "github.com/HospitalRun",
+        "details" : "<p>Open-source software for developing world hospitals.</p> <p>HospitalRun is one of the most popular offline-first electronic health records and hospital information system. The software can be deployed in a variety of healthcare environments. Thanks to its technical feature that allows use even without connectivity, it is also suitable for clinics located in the most rural areas of the planet.</p> <p>I'm very much enjoying contributing to such a worthy project, while also gaining experience at large-scale collaborative development.</p>"
+    },
+    "project5": {
+        "title" : "Pauline's Primer",
+        "description" : "React Web App",
+        "work" : "Design & Development",
+        "url" : "google.com",
+        "madewith" : ["html5", "css", "js", "react"],
+        "details" : "BOOTSTRAP Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+}
