@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         slideProjects('fwd');
     });
     
+
     
     $(window).bind('click', function(e) {
         //console.log(sectionDims[2].top);
@@ -184,6 +185,9 @@ function scrollTest(e) {
         }
     }
     
+
+   
+
     for (var i = 0; i < sectionDims.length; i++) {
         if (sectionDims[i].top < (window.innerHeight - (sectionDims[i].height/1.8)) && sectionDims[i].bottom >= 0) {
             currentSection = sectionDims[i].name;
@@ -194,6 +198,7 @@ function scrollTest(e) {
             navButtons[i].style.opacity = '.8';
             navButtons[i].style.filter = 'grayscale(0)';
         }
+
     }
 
 }
@@ -263,8 +268,7 @@ function scrollProjects(e) {
     }
 }
 
-function slideProjects(dir) {
-    
+function slideProjects(dir) {    
     getViewportDims();
     setTileHeight();
     setTileWidth();
@@ -452,3 +456,4 @@ function toggleTheme() {
     window.setTimeout(function() {
     }, 1300);
 }  
+
