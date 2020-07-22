@@ -1,4 +1,5 @@
 var delta = 0;
+let lock = false;
 let theme = 'dark';
 var html = document.documentElement;
 var currentTile = 1;
@@ -19,9 +20,10 @@ const navButtons = document.getElementsByClassName('navbar__button');
 let sections = ['home', 'about', 'work', 'contact'];
 let sectionDims = [];
 
-const getSectionDims = () => {
+const getSectionDims = () => {  // does this actually change?
     sectionDims = sections.map((section) => {
         var el = document.getElementById(section);
+        //console.log(sectionDims[2].top)
         return  {
                 name: el.id,
                 top: el.getBoundingClientRect().top,
@@ -29,6 +31,7 @@ const getSectionDims = () => {
                 height: el.offsetHeight,
                 width: el.offsetWidth
         }
+
     });
 }
 
@@ -40,21 +43,24 @@ document.addEventListener('DOMContentLoaded', function(event) {
     setTileHeight();
     navButtons[0].style.opacity = '0.8';
     navButtons[0].style.filter = 'grayscale(0)';
+
     $('.carousel__nav--up').click(function(e) {
-        //scrollProjects();
         slideProjects('back');
     });
+
     $('.carousel__nav--down').click(function(e) {
-        //scrollProjects();
         slideProjects('fwd');
     });
-    
-    
-    $(window).bind('click', function(e) {
-        //console.log(sectionDims[2].top);
-        console.log(Math.round($('.project__outer:nth-child(' + currentTile + ')' ).offset().left));  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        console.log($('.carousel').offset().left)
+
+    $('.navbar__link, .navbar__button, .navbar__button image').bind('click', function(e) {
+        setTimeout( () => {
+            checkNavScroll();
+        }, 700);
     });
+
+    $(window).bind('click', function(e) {
+    });
+
     $('.header__switch-frame').bind('click', function(e) {
         toggleTheme();
     });
@@ -62,18 +68,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
     if (mobile) {
         $('.carousel').bind('touchstart', function(e) {
             touchStart = e.originalEvent.touches[0].clientX;
-           
         });
         $('.carousel').bind('touchmove', function(e) {
-           
             scrollProjects(e);
-            console.log('workBoundTouchX');
         });
     } 
     
 })
 //window.addEventListener('scroll', throttle(scrollTest(), 1000), true);
-$(window).bind('mousewheel DOMMouseScroll touchmove', function(e){  
+$(window).bind('mousewheel DOMMouseScroll touchmove', function(e){
+        if (!lock && $(window).scrollTop == Math.round(sectionDims[2].top) ) {
+            scrollLock();
+        }
+        checkNavScroll();  
         throttle(scrollTest(e), 1000);
 });
 
@@ -89,7 +96,6 @@ function throttle(fn, wait) {
   }
 
 window.addEventListener('resize', function(e) {
-    //console.log('resize');
     // ADD CAROUSEL RESET FUNCTION HERE
     getViewportDims()
     getSectionDims();
@@ -108,30 +114,26 @@ window.addEventListener('resize', function(e) {
 });
 
 function scrollLock() {
-    
 
     var target = $('#work').offset().top;
    
-
-    console.log('lock');
     $('html').css({
         'scroll-behavior': 'smooth'
     })
     $(window).scrollTop(target);
-    //$('html').css({
-    //    'scroll-behavior': 'smooth'
-    //})
-    
+
     $('#work').bind('mousewheel DOMMouseScroll touchmove', function(e){  
-        console.log('boundScroll');
+        //console.log('boundScroll');
         scrollProjects(e);
         e.preventDefault();
     });
+    lock = true;
 }
 
 function scrollUnlock() {
-   console.log('unlock');
+  // console.log('unlock');
     $('#work').unbind('mousewheel DOMMouseScroll touchmove');
+    lock = false;
 }
 
 function getViewportDims() {
@@ -144,9 +146,7 @@ function getViewportDims() {
 
 function scrollTest(e) {
     getSectionDims();
-    var x = $('#work');
-    //console.log('scDimsTop:' + sectionDims[2].top);
-    
+    var x = $('#work');   
     const getDelta = function(e) {
         if (e.originalEvent.changedTouches) {
             var touchEnd = e.originalEvent.changedTouches[0].clientX;
@@ -162,7 +162,7 @@ function scrollTest(e) {
         if (mobile) {
             return ( currentTileLeft === Math.round($('.carousel').offset().left ));  // returns true if current tile top is equal to carousel area top.
         } else {
-            console.log('currentTileTop: ' + currentTileTop +  'workOffsetTop.top: ' + $('#work').offset().top)
+            //console.log('currentTileTop: ' + currentTileTop +  'workOffsetTop.top: ' + $('#work').offset().top)
             return ( currentTileTop === Math.round($('#work').offset().top ));
         }
     };
@@ -184,21 +184,40 @@ function scrollTest(e) {
         }
     }
     
-    for (var i = 0; i < sectionDims.length; i++) {
-        if (sectionDims[i].top < (window.innerHeight - (sectionDims[i].height/1.8)) && sectionDims[i].bottom >= 0) {
-            currentSection = sectionDims[i].name;
-            for (var j = 0; j < navButtons.length; j++) {
-                navButtons[j].style.opacity = '0.4';
-                navButtons[j].style.filter = 'grayscale(100)';
-            }
-            navButtons[i].style.opacity = '.8';
-            navButtons[i].style.filter = 'grayscale(0)';
-        }
-    }
-
+   checkNavScroll();
 }
 
-
+function checkNavScroll() {
+   
+    getSectionDims();
+    
+    var i = 0;
+    switch(true) {
+        case (window.innerHeight - sectionDims[3].top > sectionDims[3].height/2.3):
+            currentSection = 'contact';
+            i = 3;
+        break
+        case (window.innerHeight - sectionDims[2].top > sectionDims[2].height/2.3):
+            currentSection = 'work';
+            i = 2;
+        break
+        case (window.innerHeight - sectionDims[1].top > sectionDims[1].height/2.3):
+            currentSection = 'about';
+            i = 1;
+        break
+        default:
+            currentSection = 'home';
+            i = 0;
+    }
+    for (var j = 0; j < navButtons.length; j++) {
+        if (j !== i) {
+        navButtons[j].style.opacity = '0.4';
+        navButtons[j].style.filter = 'grayscale(100)';
+        }
+    }
+    navButtons[i].style.opacity = '.8';
+    navButtons[i].style.filter = 'grayscale(0)';
+}
 
 
 function scrollProjects(e) {
@@ -213,7 +232,7 @@ function scrollProjects(e) {
     //let tileFinishedMove = ();
     const getDelta = function(e) {
         if (e.originalEvent.changedTouches) {
-            console.log('touchPassed');
+            //console.log('touchPassed');
             var touchEnd = e.originalEvent.changedTouches[0].clientX;
             return touchEnd - touchStart;
         } else {
@@ -234,17 +253,14 @@ function scrollProjects(e) {
     };
     if (!mobile) {
         if ( tileFinishedMove() ) {
-            console.log('tileFinMoveCheckPass');
             if(getDelta(e) <= 0) {
                 if (currentTile < numProjects) {  //check numbers-1?
                     slideProjects('fwd');
-                    //console.log('scrollFwd');
                 } else {
                         scrollUnlock();
                 }
             } else if (currentTile > 1) {
                 slideProjects('back');
-                //console.log('scrollBack');
             } else {
                 scrollUnlock();
             }
@@ -323,20 +339,15 @@ function slideProjects(dir) {
         slideY('.project__outer:nth-child(' + next + ') .project__img--sm', '0px');            // slide next project mobile img for parallax
         slideY('.carousel__inner', '-' + ((next - 1) * tileHeight) + 'px');                            // slide entire carousel up/down one tile height, -1 for zero-indexed multiplier
         
-
-
         setTimeout( () => {
             fadeIn('.project-text');
         
         }, 700);
         
-
         setTimeout(null, 500);
-        
         
         currentTile = next;
         checkCurrentTile();
-        
     }
     $('.carousel__inner').css({'tansition': 'none'});
     //console.log('currentTile: ' + currentTile + ' / '+  'tileWidth: ' + tileWidth + ' / ' + 'tileHeight: ' + tileHeight + ' / ' + slideTo)
