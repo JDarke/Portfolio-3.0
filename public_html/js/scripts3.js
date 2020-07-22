@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }, 700);
     });
 
+
     $(window).bind('click', function(e) {
     });
 
@@ -184,6 +185,7 @@ function scrollTest(e) {
         }
     }
     
+
    checkNavScroll();
 }
 
@@ -213,7 +215,9 @@ function checkNavScroll() {
         if (j !== i) {
         navButtons[j].style.opacity = '0.4';
         navButtons[j].style.filter = 'grayscale(100)';
+
         }
+
     }
     navButtons[i].style.opacity = '.8';
     navButtons[i].style.filter = 'grayscale(0)';
@@ -279,8 +283,7 @@ function scrollProjects(e) {
     }
 }
 
-function slideProjects(dir) {
-    
+function slideProjects(dir) {    
     getViewportDims();
     setTileHeight();
     setTileWidth();
@@ -463,3 +466,4 @@ function toggleTheme() {
     window.setTimeout(function() {
     }, 1300);
 }  
+
