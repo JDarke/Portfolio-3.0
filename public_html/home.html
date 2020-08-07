@@ -99,9 +99,9 @@
     <header class="header">
       <div
         class="header__logo-frame"
-        data-anijs="if: mouseover, do: rubberBand animated"
+        data-anijs="if: mouseover, do: tada animated"
       > 
-        <a href="home.html"
+        <a href="https://johndarke.net"
           ><img class="header__logo" src="images/jdlogo.svg" alt="JD Logo"
         /></a>
       </div>
@@ -125,7 +125,7 @@
             </div>
           </a>
 
-          <a class="navbar__link" href="#work">
+          <a class="navbar__link" href="#work" onclick="scrollLock()" >
             <div id="nav-work" class="navbar__button">
               <img
                 src="images/icon-work-active.svg"
@@ -211,61 +211,61 @@
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__css"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-css-style-develop-layout-language-512.png"
+                src="images/icon-css.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__react"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png"
+                src="images/icon-react.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__html"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-html-markup-develop-layout-language-512.png"
+                src="images/icon-html5.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__sass"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/sass-512.png"
+                src="images/icon-sass.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__js"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-javascript-software-develop-command-language-512.png"
+                src="images/icon-js.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__jq"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-javascript-jquery-develop-framework-language-512.png"
+                src="images/icon-jquery.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__wp"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/wordpress-cms-word-blog-page-web-design-512.png"
+                src="images/icon-wp.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__node"
-                src="https://cdn0.iconfinder.com/data/icons/designer-skills/128/node-js-512.png"
+                src="images/icon-nodejs.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__php"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-php-software-develop-command-language-512.png"
+                src="images/icon-php.svg"
               />
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
                 class="icon__skill icon__git"
-                src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/github-repository-svn-manage-files-contribute-branch-512.png"
+                src="images/icon-git.svg"
               />
             </div>
           </div>
@@ -470,7 +470,7 @@
         </div>
       </div>
 
-      <div id="contact" class="l-page l-page__contact">
+      <div id="contact" class="l-page l-page__contact page__hidden">
         <div class="l-page__content l-page__content--contact">
           <div
             class="l-page__title l-page__title--contact"
@@ -545,9 +545,17 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
+      
       $(document).ready(function () {
+        setTimeout(() => {
+          $('.home__title, .home__tagline, .home__button').css({
+          'opacity': '1'
+          })
+        }, 500);
         $(this).scrollTop(0);
       });
+      
+     
     </script>
     <script src="./js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/anijs-min.js"></script>

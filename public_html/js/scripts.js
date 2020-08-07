@@ -1,30 +1,26 @@
-var delta = 0;
+
+const html = document.documentElement;
+const numProjects = document.getElementsByClassName("project__outer").length;
+const navButtons = document.getElementsByClassName("navbar__button");
+const sections = ["home", "about", "work", "contact"];
+let delta = 0;
+let debounce_timer;
 let lock = false;
 let theme = "dark";
-var html = document.documentElement;
-var currentTile = 1;
-var touchStart;
-var tileHeight;
-var tileWidth;
-var currentPage = 1;
-var pageHeight;
+let currentTile = 1;
+let touchStart;
+let tileHeight;
+let tileWidth;
+let currentPage = 1;
+let pageHeight;
 let currentSection = "home";
 let mobile = false;
 let viewportWidth, viewportHeight;
-getViewportDims();
-
-var numProjects = document.getElementsByClassName("project__outer").length;
-
-const navButtons = document.getElementsByClassName("navbar__button");
-
-let sections = ["home", "about", "work", "contact"];
 let sectionDims = [];
 
 const getSectionDims = () => {
-  // does this actually change?
   sectionDims = sections.map((section) => {
     var el = document.getElementById(section);
-    //console.log(sectionDims[2].top)
     return {
       name: el.id,
       top: el.getBoundingClientRect().top,
@@ -40,8 +36,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   getSectionDims();
   setTileWidth();
   setTileHeight();
-  navButtons[0].style.opacity = "0.8";
-  navButtons[0].style.filter = "grayscale(0)";
+  checkNavScroll();
 
   $(".carousel__nav--up").click(function (e) {
     slideProjects("back");
@@ -56,11 +51,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function (e) {
       setTimeout(() => {
         checkNavScroll();
-      }, 700);
+      }, 620);
     }
   );
-
-  $(window).bind("click", function (e) {});
 
   $(".header__switch-frame").bind("click", function (e) {
     toggleTheme();
@@ -75,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       scrollProjects(e);
     });
   }
+
   $(".details__popup").click(function (e) {
     e.stopPropagation();
   });
@@ -87,13 +81,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
     overlayToggle();
   });
 });
-//window.addEventListener('scroll', throttle(scrollTest(), 1000), true);
+
+
 $(window).bind("mousewheel DOMMouseScroll touchmove", function (e) {
-  if (!lock && $(window).scrollTop >= Math.round(sectionDims[2].top)) {
-    scrollLock();
+  if (debounce_timer) {
+    window.clearTimeout(debounce_timer);
   }
-  checkNavScroll();
-  throttle(scrollTest(e), 1000);
+  debounce_timer = window.setTimeout(function () {
+    scrollTest(e);
+    console.log("Fire");
+  }, 100);
+  throttle(checkNavScroll(), 50);
 });
 
 function throttle(fn, wait) {
@@ -107,15 +105,11 @@ function throttle(fn, wait) {
 }
 
 window.addEventListener("resize", function (e) {
-  // ADD CAROUSEL RESET FUNCTION HERE
   getViewportDims();
   getSectionDims();
   setTileWidth();
   setTileHeight();
   $(".carousel__inner").css({ tansition: "none" });
-  /*setTimeout( () => {
-        $('.carousel__inner').css({'transition': 'transform 1.2s ease, -webkit-transform 1.2s ease;'});
-    }, 1000);*/
   $(".carousel").removeClass("animated");
   $(".carousel").removeClass("fadeInUp");
   $(".carousel").css({
@@ -125,41 +119,31 @@ window.addEventListener("resize", function (e) {
 });
 
 function scrollLock() {
-    if (mobile) {
-        $(".carousel").bind("mousewheel DOMMouseScroll touchmove", function (e) {
-            //console.log('boundScroll');
-            e.preventDefault();
-            scrollProjects(e);
-            
-          });
-    } else {
+  if (mobile) {
+    $(".carousel").bind("mousewheel DOMMouseScroll touchmove", function (e) {
+      e.preventDefault();
+      scrollProjects(e);
+    });
+  } else {
     $("#work").bind("mousewheel DOMMouseScroll touchmove", function (e) {
-        //console.log('boundScroll');
-        e.preventDefault();
-        scrollProjects(e);
-        
-      });
-    }
-var target = $("#work").offset().top;
-
-  $("html").css({
-    "scroll-behavior": "smooth",
-  });
+      e.preventDefault();
+      e.stopPropagation();
+      scrollProjects(e);
+    });
+  }
+  var target = $("#work").offset().top;
   $(window).scrollTop(target);
-
-  
   lock = true;
 }
 
 function scrollUnlock() {
-  // console.log('unlock');
   $(".carousel").unbind("mousewheel DOMMouseScroll touchmove");
   $("#work").unbind("mousewheel DOMMouseScroll touchmove");
   lock = false;
 }
 
 function getViewportDims() {
-  viewportWidth = $(window).width(); //move this inside of checkview() if not needed in this scope
+  viewportWidth = $(window).width(); 
   viewportHeight = $(window).height();
   if (viewportWidth < 820) {
     mobile = true;
@@ -168,7 +152,6 @@ function getViewportDims() {
 
 function scrollTest(e) {
   getSectionDims();
-  var x = $("#work");
   const getDelta = function (e) {
     if (e.originalEvent.changedTouches) {
       var touchEnd = e.originalEvent.changedTouches[0].clientX;
@@ -177,46 +160,25 @@ function scrollTest(e) {
       return e.originalEvent.wheelDelta;
     }
   };
-  const tileFinishedMove = function () {
-    getSectionDims();
-    var currentTileLeft = Math.round(
-      $(".project__outer:nth-child(" + currentTile + ")").offset().left
-    );
-    var currentTileTop = Math.round(
-      $(".project__outer:nth-child(" + currentTile + ")").offset().top
-    );
-    if (mobile) {
-      return currentTileLeft === Math.round($(".carousel").offset().left); // returns true if current tile top is equal to carousel area top.
-    } else {
-      //console.log('currentTileTop: ' + currentTileTop +  'workOffsetTop.top: ' + $('#work').offset().top)
-      return currentTileTop === Math.round($("#work").offset().top);
-    }
-  };
+
   if (!mobile) {
-    if (tileFinishedMove()) {
-      if (getDelta(e) <= 0) {
-        // if scrolling down
-        if (
-          currentTile < numProjects &&
-          sectionDims[2].top <= getDelta(e) * -1 * 2
-        ) {
-          //
-          scrollLock();
-          //console.log('scrollFwd');
-        } else {
-          scrollUnlock();
-        }
-      } else if (currentTile > 1 && sectionDims[2].top > getDelta(e) * -1 * 2) {
-        //if scrolling up
+    if (getDelta(e) <= 0) {
+      // if scrolling down
+      if (
+        currentTile < numProjects &&
+        sectionDims[2].top <= getDelta(e) * -1 * 1
+      ) {
         scrollLock();
-        //console.log('scrollBack');
       } else {
         scrollUnlock();
       }
+    } else if (currentTile > 1 && sectionDims[2].top > getDelta(e) * -1 * 1) {
+      //if scrolling up
+      scrollLock();
+    } else {
+      scrollUnlock();
     }
   }
-
-  checkNavScroll();
 }
 
 function checkNavScroll() {
@@ -252,18 +214,15 @@ function checkNavScroll() {
 
 function scrollProjects(e) {
   if (!mobile) {
-      $(window).scrollTop($("#work").offset().top - (mobile ? 60 : 0));
+    $(window).scrollTop($("#work").offset().top);
   }
   setTileHeight();
-  //console.log('SP - secDim.top: ' + sectionDims[2].top + ' / ' + 'ct: ' + currentTile);
   setTileWidth();
   if (currentTile < 1) {
     currentTile = 1;
   }
-  //let tileFinishedMove = ();
   const getDelta = function (e) {
     if (e.originalEvent.changedTouches) {
-      //console.log('touchPassed');
       var touchEnd = e.originalEvent.changedTouches[0].clientX;
       return touchEnd - touchStart;
     } else {
@@ -282,7 +241,6 @@ function scrollProjects(e) {
     if (mobile) {
       return currentTileLeft === Math.round($(".carousel").offset().left); // returns true if current tile top is equal to carousel area top.
     } else {
-      //console.log('currentTileTop: ' + currentTileTop +  'workOffsetTop.top: ' + $('#work').offset().top)
       return currentTileTop === Math.round($("#work").offset().top);
     }
   };
@@ -290,7 +248,6 @@ function scrollProjects(e) {
     if (tileFinishedMove()) {
       if (getDelta(e) <= 0) {
         if (currentTile < numProjects) {
-          //check numbers-1?
           slideProjects("fwd");
         } else {
           scrollUnlock();
@@ -299,9 +256,8 @@ function scrollProjects(e) {
         slideProjects("back");
       } else {
         setTimeout(() => {
-            scrollUnlock();
-        }, 1250);
-        
+          scrollUnlock();
+        }, 0);
       }
     }
   } else {
@@ -319,11 +275,14 @@ function scrollProjects(e) {
 }
 
 function slideProjects(dir) {
+  if (!mobile) {
+    scrollLock();
+    $(window).scrollTop($("#work").offset().top);
+  }
   getViewportDims();
   setTileHeight();
   setTileWidth();
   $(".carousel__inner").css({ tansition: "transform 1.2s ease" });
-  //console.log('tileWidth: ' + tileWidth );
   var next;
   var slideTo;
   $(".carousel__inner").css({
@@ -353,11 +312,11 @@ function slideProjects(dir) {
     setTimeout(() => {
       fadeIn(".project-text");
     }, 700);
-
     setTimeout(getProjectInfo, 500);
 
     currentTile = next;
     checkCurrentTile();
+
   } else {
     slideTo = tileHeight * 0.7;
     if (dir == "fwd") {
@@ -392,7 +351,6 @@ function slideProjects(dir) {
     checkCurrentTile();
   }
   $(".carousel__inner").css({ tansition: "none" });
-  //console.log('currentTile: ' + currentTile + ' / '+  'tileWidth: ' + tileWidth + ' / ' + 'tileHeight: ' + tileHeight + ' / ' + slideTo)
 }
 
 function checkCurrentTile() {
@@ -427,7 +385,6 @@ function setTileHeight() {
       width: "40vw",
     });
     $(".carousel__inner").css({
-      //height: tileHeight * (numProjects),
       transform: "translateY(-" + (currentTile - 1) * tileHeight + "px)",
     });
   }
@@ -463,7 +420,11 @@ function getProjectInfo() {
         project.description +
         "</p><p>" +
         madeWith +
-        '</p><p class="spacer"></p><div class="flex row buttons"><div class="button button--hollow" onclick="overlayToggle()"><a>Details</a></div><div class="button button--hollow"><a target="_blank" rel="noopener noreferrer" href="https://' + project.codelink + '">Code</a></div><div class="button button--hollow"><a target="_blank" rel="noopener noreferrer" href="https://' + project.url + '" >Visit</a></div>'
+        '</p><p class="spacer"></p><div class="flex row buttons"><div class="button button--hollow" onclick="overlayToggle()"><a>Details</a></div><div class="button button--hollow"><a target="_blank" rel="noopener noreferrer" href="https://' +
+        project.codelink +
+        '">Code</a></div><div class="button button--hollow"><a target="_blank" rel="noopener noreferrer" href="https://' +
+        project.url +
+        '" >Visit</a></div>'
     );
     $(".project-text-details").html(
       "<h3>" +

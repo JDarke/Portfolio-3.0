@@ -547,18 +547,20 @@ code {
 }
 
 
-
 .home__title {
   margin: 5vw 5vw .3rem calc(5vw - 10px);
+  opacity: 0;
 }
 
 .home__tagline {
+  opacity: 0;
   letter-spacing: 2px;
   -webkit-animation-delay: .3s;
           animation-delay: .3s;
 }
 
 .home__button {
+  opacity: 0;
   -webkit-animation-delay: .6s;
           animation-delay: .6s;
 }
@@ -1154,6 +1156,8 @@ form input {
   background-color: #666;
 }
 
+img::-moz-selection { background: none; }
+img::selection { background: none; }
 
 @media only screen and (min-width: 400px) {
   h1 {
@@ -1597,3 +1601,4 @@ form input {
     font-size: 14px;
   }
 }
+
