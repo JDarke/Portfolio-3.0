@@ -200,13 +200,13 @@
             >
              
               <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
+                
+                
                 class="icon__skill icon__jd"
-                src="https://i.ibb.co/bB6jFyk/jdpic.jpg"
+                src="images/jd2.png"
                 alt="jdpic"
                 
-              /> <!-- border="0" -->
+              /> <!-- 
               <img
                 data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
                 style="opacity: 0;"
@@ -266,23 +266,25 @@
                 style="opacity: 0;"
                 class="icon__skill icon__git"
                 src="images/icon-git.svg"
-              />
+              />border="0" -->
             </div>
           </div>
           <div
             class="l-page__text--about"
-            data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
-            style="opacity: 0;"
+            
           >
-            <p data-anijs="if: click, do: flipInY animated">
+            <p data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0;">
               I’m a passionate, neurodivergent <code>front-end developer</code>.
             </p>
 
-            <p>
+            <p data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0; animation-delay: 200;">
               A curious person with an <code>analytical mind</code>, I enjoy
               solving challenging problems with elegant solutions.
             </p>
-            <p>
+            <p data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+            style="opacity: 0; animation-delay: 400;">
               My toolkit primarily consists of <code>HTML5</code>,
               <code>CSS3</code>, <code>Sass</code>, <code>JavaScript</code>,
               <code>React</code>, <code>Node/npm</code>, <code>Git</code>,
@@ -396,6 +398,19 @@
                     <img
                       class="project__img--sm"
                       src="images/projectjdportsmnew.png"
+                    />
+                  </div>
+                </div>
+
+                <div class="project__outer">
+                  <div class="project__inner">
+                    <img
+                      class="project__img--lg"
+                      src="images/projectskrabllg.png"
+                    />
+                    <img
+                      class="project__img--sm"
+                      src="images/projectskrablsm.png"
                     />
                   </div>
                 </div>
@@ -557,6 +572,10 @@
       
      
     </script>
+    
+    <script src="./js/jquery.easing.1.3.js"></script>
+    <script src="./js/jquery.easing.compatibility.js"></script>
+    <script src="./js/jquery.circulate.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/anijs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>

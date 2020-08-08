@@ -54,7 +54,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
       }, 620);
     }
   );
-
+/*
+  $('.icon__jd').circulate({
+    speed: 2000,                  // Speed of each quarter segment of animation, 1000 = 1 second
+    height: 100,                 // Distance vertically to travel
+    width: 300,                  // Distance horizontally to travel
+    sizeAdjustment: 100,         // Percentage to grow or shrink
+    loop: true,                 // Circulate continuously
+    zIndexValues: [1, 1, 1, 1],  // Sets z-index value at each stop of animation
+  })
+*/
   $(".header__switch-frame").bind("click", function (e) {
     toggleTheme();
   });
