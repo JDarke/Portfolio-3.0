@@ -3,6 +3,8 @@ const html = document.documentElement;
 const numProjects = document.getElementsByClassName("project__outer").length;
 const navButtons = document.getElementsByClassName("navbar__button");
 const sections = ["home", "about", "work", "contact"];
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext("2d");
 let delta = 0;
 let debounce_timer;
 let lock = false;
@@ -17,6 +19,12 @@ let currentSection = "home";
 let mobile = false;
 let viewportWidth, viewportHeight;
 let sectionDims = [];
+let W = $('.about__screen').width(),
+  H = $('.about__screen').height(), 
+  particleCount = 30,
+  particles = [],
+  minDist = 80,
+  dist;
 
 const getSectionDims = () => {
   sectionDims = sections.map((section) => {
@@ -30,6 +38,16 @@ const getSectionDims = () => {
     };
   });
 };
+
+const setParticles = () => {
+  particleCount = mobile ? 25 : W * .15,
+  particles = [],
+  minDist = mobile ? 70 : W * .15,
+  dist;
+  for (var i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+  }
+}
 
 document.addEventListener("DOMContentLoaded", function (event) {
   getViewportDims();
@@ -54,16 +72,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       }, 620);
     }
   );
-/*
-  $('.icon__jd').circulate({
-    speed: 2000,                  // Speed of each quarter segment of animation, 1000 = 1 second
-    height: 100,                 // Distance vertically to travel
-    width: 300,                  // Distance horizontally to travel
-    sizeAdjustment: 100,         // Percentage to grow or shrink
-    loop: true,                 // Circulate continuously
-    zIndexValues: [1, 1, 1, 1],  // Sets z-index value at each stop of animation
-  })
-*/
+
   $(".header__switch-frame").bind("click", function (e) {
     toggleTheme();
   });
@@ -89,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   $(".close, .overlay").click(function () {
     overlayToggle();
   });
+  animloop();
 });
 
 
@@ -118,6 +128,8 @@ window.addEventListener("resize", function (e) {
   getSectionDims();
   setTileWidth();
   setTileHeight();
+  setCanvasSize();
+  setParticles();
   $(".carousel__inner").css({ tansition: "none" });
   $(".carousel").removeClass("animated");
   $(".carousel").removeClass("fadeInUp");
@@ -431,7 +443,7 @@ function getProjectInfo() {
         madeWith +
         '</p><p class="spacer"></p><div class="flex row buttons"><div class="button button--hollow" onclick="overlayToggle()"><a>Details</a></div><div class="button button--hollow"><a target="_blank" rel="noopener noreferrer" href="https://' +
         project.codelink +
-        '">Code</a></div><div class="button button--hollow"><a target="_blank" rel="noopener noreferrer" href="https://' +
+        '">Code</a></div><div class="button button--hollow"><a target="_blank" rel="noopener noreferrer" href="' +
         project.url +
         '" >Visit</a></div>'
     );
@@ -492,4 +504,126 @@ function toggleTheme() {
     theme = "dark";
   }
   window.setTimeout(function () {}, 1300);
+}
+
+
+window.requestAnimFrame = (function () {
+  return (
+    function (callback) {
+      window.setTimeout(callback, 1000 / 30);
+    }
+  );
+})();
+
+function setCanvasSize() {
+  W = $('.about__screen').width(),
+  H = $('.about__screen').height();
+  canvas.width = W * 1;
+  canvas.height = H * 1;
+}
+
+setCanvasSize();
+
+function paintCanvas() {
+  setCanvasSize();
+  // fill black
+  context.fillStyle = "rgba(0,0,0,0)";
+  context.fillRect(0, 0, W, H);
+}
+
+class Particle {
+  constructor() {
+
+    this.x = (Math.random() * W) ;
+    this.y = (Math.random() * H) ;
+
+    this.vx = -1 + Math.random() * 2;
+    this.vy = -1 + Math.random() * 2;
+
+    this.radius = 3;
+
+    this.draw = function () {
+      context.fillStyle = "rgba(120,120,120,.8)";
+      context.beginPath();
+      context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+
+      // Fill the color to the arc that we just created
+      context.fill();
+    };
+  }
+}
+
+
+setParticles();
+
+function draw() {
+  paintCanvas();
+  for (var i = 0; i < particles.length; i++) {
+    p = particles[i];
+    p.draw();
+  }
+  update();
+}
+
+function update() {
+  for (var i = 0; i < particles.length; i++) {
+    p = particles[i];
+
+    // Change the velocities
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if (p.x + p.radius > W) {
+      
+      p.vx *= -1;
+    } else if (p.x - p.radius < 0) {
+      p.vx *= -1;
+    }
+
+    if (p.y + p.radius > H) {
+    
+      p.vy *= -1;
+    } else if (p.y - p.radius < 0) {
+      p.vy *= -1;
+    }
+    for (var j = i + 1; j < particles.length; j++) {
+      p2 = particles[j];
+      distance(p, p2);
+    }
+  }
+}
+
+function distance(p1, p2) {
+  var dist,
+    dx = p1.x - p2.x,
+    dy = p1.y - p2.y;
+
+  dist = Math.sqrt(dx * dx + dy * dy);
+
+  if (dist <= minDist) {
+    // Draw the line
+    context.beginPath();
+    context.strokeStyle = "rgba(120,120,120," + (1.2 - dist / minDist) + ")";
+    context.moveTo(p1.x, p1.y);
+    context.lineTo(p2.x, p2.y);
+    context.stroke();
+    context.closePath();
+    var ax = dx / 5000000,
+      ay = dy / 5000000;
+
+    p1.vx -= ax;
+    p1.vy -= ay;
+
+    p2.vx += ax;
+    p2.vy += ay;
+  }
+}
+
+function animloop() {
+  draw();
+  requestAnimFrame(animloop);
+}
+
+function spinIcon() {
+  
 }

@@ -80,7 +80,7 @@
       content="/favicon/ms-icon-144x144.png"
     />
     <meta name="theme-color" content="" />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>John Darke - Web Dev Portfolio</title>
     <meta name="description" content="John Darke - Web Dev Portfolio" />
@@ -100,7 +100,7 @@
       <div
         class="header__logo-frame"
         data-anijs="if: mouseover, do: tada animated"
-      > 
+      >
         <a href="https://johndarke.net"
           ><img class="header__logo" src="images/jdlogo.svg" alt="JD Logo"
         /></a>
@@ -108,7 +108,6 @@
       <div class="header__nav-wrap">
         <div class="navbar">
           <a class="navbar__link" href="#home">
-        
             <div id="nav-home" class="navbar__button">
               <img
                 src="images/icon-home-active.svg"
@@ -125,7 +124,7 @@
             </div>
           </a>
 
-          <a class="navbar__link" href="#work" onclick="scrollLock()" >
+          <a class="navbar__link" href="#work" onclick="scrollLock()">
             <div id="nav-work" class="navbar__button">
               <img
                 src="images/icon-work-active.svg"
@@ -198,93 +197,40 @@
               data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
               style="opacity: 0;"
             >
-             
-              <img
-                
-                
-                class="icon__skill icon__jd"
-                src="images/jd2.png"
-                alt="jdpic"
-                
-              /> <!-- 
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__css"
-                src="images/icon-css.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__react"
-                src="images/icon-react.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__html"
-                src="images/icon-html5.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__sass"
-                src="images/icon-sass.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__js"
-                src="images/icon-js.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__jq"
-                src="images/icon-jquery.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__wp"
-                src="images/icon-wp.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__node"
-                src="images/icon-nodejs.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__php"
-                src="images/icon-php.svg"
-              />
-              <img
-                data-anijs="if: scroll, on: window, do: bounceIn animated, before: scrollReveal"
-                style="opacity: 0;"
-                class="icon__skill icon__git"
-                src="images/icon-git.svg"
-              />border="0" -->
+              <canvas id="canvas"></canvas>
+              <div class="about__screen">
+                <div class="screen__spacer"></div>
+              </div>
+              <div class="icon__spin">
+                <img class="icon__jd" src="images/jd.png" alt="jdpic" />
+                <img
+                  class="icon__jd--reverse"
+                  src="images/jd.png"
+                  alt="jdpic"
+                />
+              </div>
+            
             </div>
           </div>
-          <div
-            class="l-page__text--about"
-            
-          >
-            <p data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
-            style="opacity: 0;">
+          <div class="l-page__text--about">
+            <p
+              data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+              style="opacity: 0;"
+            >
               I’m a passionate, neurodivergent <code>front-end developer</code>.
             </p>
 
-            <p data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
-            style="opacity: 0; animation-delay: 200;">
+            <p
+              data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+              style="opacity: 0; animation-delay: 200;"
+            >
               A curious person with an <code>analytical mind</code>, I enjoy
               solving challenging problems with elegant solutions.
             </p>
-            <p data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
-            style="opacity: 0; animation-delay: 400;">
+            <p
+              data-anijs="if: scroll, on: window, do: fadeInUp animated, before: scrollReveal"
+              style="opacity: 0; animation-delay: 400;"
+            >
               My toolkit primarily consists of <code>HTML5</code>,
               <code>CSS3</code>, <code>Sass</code>, <code>JavaScript</code>,
               <code>React</code>, <code>Node/npm</code>, <code>Git</code>,
@@ -292,67 +238,91 @@
               <code>PHP</code>, and I'm always keen to learn new skills.
             </p>
           </div>
-         
         </div>
       </div>
       <div id="work" class="l-page l-page__portfolio">
         <div class="overlay">
           <div class="details__popup-wrap">
-              <div class="details__popup">
-                  
-                  <div class="close">×</div>
-                  <div class="text project-text-details">
-                      <h3>Dolya Consulting</h3>
-                      <p>Website design & development</p>
-                      <p>
-                        <code>HTML</code> • <code>CSS</code> • <code>JS</code> •
-                        <code>jQ</code> • <code>WP</code>
-                      </p>
-                      <p class="spacer"></p>
+            <div class="details__popup">
+              <div class="close">×</div>
+              <div class="text project-text-details">
+                <h3>Dolya Consulting</h3>
+                <p>Website design & development</p>
+                <p>
+                  <code>HTML</code> • <code>CSS</code> • <code>JS</code> •
+                  <code>jQ</code> • <code>WP</code>
+                </p>
+                <p class="spacer"></p>
 
-                    
-                      <div class="buttons">
-                      <div class="button button--hollow">
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://github.com/JDarke/Dolya"
-                          >Code</a
-                        >
-                      </div>
-                      <div class="button button--hollow">
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href="https://dolya.ltd"
-                          >Visit</a
-                        >
-                      </div>
-                    </div>
-                      <div class="details__text">
-                          <p>DOLYA Consulting Ltd is a Gibraltar-based boutique consulting practice, offering business development, strategy, compliance and regulatory services.</p>  
-
-                          <p>Using their logo, title font and chosen brand colours as a starting point, they wanted a site to meet the following user stories:</p> 
-                          <ul>
-                              <li>Modern, long-format single-page site with responsive layout</li>
-                              <li>Contains plenty of whitespace for a light, clean feel</li>
-                              <li>The design should be responsive</li>
-                              <li>Blog section separate from the main site</li>
-                              <li>The logo motif of a golden thread should be utilised throughout the page</li>
-                          </ul>
-                          <p>They place a high value on working as a team, so all four partners were consulted throughout the design stage for their feedback.</p> 
-                          
-                          <p>By the third draft, we’d settled on using the golden thread as a continuous element that starts at the hero screen logo and extends as an animation through each section to connect or frame every element of content.</p> 
-                          
-                          <p>To keep the main static site lightweight, the blog was added as a separate subdomain, and uses a WordPress child theme customised to mirror the style of the main site.</p> 
-
-                      </div>
+                <div class="buttons">
+                  <div class="button button--hollow">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/JDarke/Dolya"
+                      >Code</a
+                    >
                   </div>
+                  <div class="button button--hollow">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://dolya.ltd"
+                      >Visit</a
+                    >
+                  </div>
+                </div>
+                <div class="details__text">
+                  <p>
+                    DOLYA Consulting Ltd is a Gibraltar-based boutique
+                    consulting practice, offering business development,
+                    strategy, compliance and regulatory services.
+                  </p>
+
+                  <p>
+                    Using their logo, title font and chosen brand colours as a
+                    starting point, they wanted a site to meet the following
+                    user stories:
+                  </p>
+                  <ul>
+                    <li>
+                      Modern, long-format single-page site with responsive
+                      layout
+                    </li>
+                    <li>
+                      Contains plenty of whitespace for a light, clean feel
+                    </li>
+                    <li>The design should be responsive</li>
+                    <li>Blog section separate from the main site</li>
+                    <li>
+                      The logo motif of a golden thread should be utilised
+                      throughout the page
+                    </li>
+                  </ul>
+                  <p>
+                    They place a high value on working as a team, so all four
+                    partners were consulted throughout the design stage for
+                    their feedback.
+                  </p>
+
+                  <p>
+                    By the third draft, we’d settled on using the golden thread
+                    as a continuous element that starts at the hero screen logo
+                    and extends as an animation through each section to connect
+                    or frame every element of content.
+                  </p>
+
+                  <p>
+                    To keep the main static site lightweight, the blog was added
+                    as a separate subdomain, and uses a WordPress child theme
+                    customised to mirror the style of the main site.
+                  </p>
+                </div>
               </div>
+            </div>
           </div>
-          
-      </div>
-      
+        </div>
+
         <div class="l-page__content--portfolio">
           <div
             class="l-page__title--portfolio"
@@ -374,10 +344,7 @@
               </div>
               <div class="carousel__inner">
                 <div class="project__outer">
-                  <div
-                    class="project__inner"
-                   
-                  >
+                  <div class="project__inner">
                     <img
                       class="project__img--lg"
                       src="images/projectdolyalgnew.png"
@@ -560,22 +527,15 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-      
       $(document).ready(function () {
         setTimeout(() => {
-          $('.home__title, .home__tagline, .home__button').css({
-          'opacity': '1'
-          })
+          $(".home__title, .home__tagline, .home__button").css({
+            opacity: "1",
+          });
         }, 500);
         $(this).scrollTop(0);
       });
-      
-     
     </script>
-    
-    <script src="./js/jquery.easing.1.3.js"></script>
-    <script src="./js/jquery.easing.compatibility.js"></script>
-    <script src="./js/jquery.circulate.js"></script>
     <script src="./js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/anijs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/AniJS/0.9.3/helpers/scrollreveal/anijs-helper-scrollreveal-min.js"></script>
