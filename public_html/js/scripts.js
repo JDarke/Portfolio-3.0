@@ -1,26 +1,26 @@
-
-const html = document.documentElement;
-const numProjects = document.getElementsByClassName("project__outer").length;
-const navButtons = document.getElementsByClassName("navbar__button");
-const sections = ["home", "about", "work", "contact"];
-const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d");
-let delta = 0;
-let debounce_timer;
-let lock = false;
-let theme = "dark";
-let currentTile = 1;
-let touchStart;
-let tileHeight;
-let tileWidth;
-let currentPage = 1;
-let pageHeight;
-let currentSection = "home";
-let mobile = false;
-let viewportWidth, viewportHeight;
-let sectionDims = [];
-let W = $('.about__screen').width(),
-  H = $('.about__screen').height(), 
+const html = document.documentElement,
+  numProjects = document.getElementsByClassName("project__outer").length,
+  navButtons = document.getElementsByClassName("navbar__button"),
+  sections = ["home", "about", "work", "contact"],
+  canvas = document.getElementById("canvas"),
+  context = canvas.getContext("2d");
+let delta = 0,
+  debounce_timer,
+  lock = false,
+  theme = "dark",
+  currentTile = 1,
+  touchStart,
+  tileHeight,
+  tileWidth,
+  currentPage = 1,
+  pageHeight,
+  currentSection = "home",
+  mobile = false,
+  viewportWidth,
+  viewportHeight,
+  sectionDims = [],
+  W = $(".about__screen").width(),
+  H = $(".about__screen").height(),
   particleCount = 30,
   particles = [],
   minDist = 80,
@@ -40,14 +40,14 @@ const getSectionDims = () => {
 };
 
 const setParticles = () => {
-  particleCount = mobile ? 25 : W * .15,
-  particles = [],
-  minDist = mobile ? 70 : W * .15,
-  dist;
+  (particleCount = mobile ? 25 : W * 0.15),
+    (particles = []),
+    (minDist = mobile ? 70 : W * 0.15),
+    dist;
   for (var i = 0; i < particleCount; i++) {
     particles.push(new Particle());
   }
-}
+};
 
 document.addEventListener("DOMContentLoaded", function (event) {
   getViewportDims();
@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
   animloop();
 });
-
 
 $(window).bind("mousewheel DOMMouseScroll touchmove", function (e) {
   if (debounce_timer) {
@@ -164,7 +163,7 @@ function scrollUnlock() {
 }
 
 function getViewportDims() {
-  viewportWidth = $(window).width(); 
+  viewportWidth = $(window).width();
   viewportHeight = $(window).height();
   if (viewportWidth < 820) {
     mobile = true;
@@ -337,7 +336,6 @@ function slideProjects(dir) {
 
     currentTile = next;
     checkCurrentTile();
-
   } else {
     slideTo = tileHeight * 0.7;
     if (dir == "fwd") {
@@ -410,10 +408,10 @@ function setTileHeight() {
     });
   }
 }
+
 function setTileWidth() {
   if (mobile) {
     tileWidth = $(".carousel").width();
-
     $(".project__outer").css({
       height: "auto",
       width: tileWidth,
@@ -506,18 +504,14 @@ function toggleTheme() {
   window.setTimeout(function () {}, 1300);
 }
 
-
 window.requestAnimFrame = (function () {
-  return (
-    function (callback) {
-      window.setTimeout(callback, 1000 / 30);
-    }
-  );
+  return function (callback) {
+    window.setTimeout(callback, 1000 / 30);
+  };
 })();
 
 function setCanvasSize() {
-  W = $('.about__screen').width(),
-  H = $('.about__screen').height();
+  (W = $(".about__screen").width()), (H = $(".about__screen").height());
   canvas.width = W * 1;
   canvas.height = H * 1;
 }
@@ -533,9 +527,8 @@ function paintCanvas() {
 
 class Particle {
   constructor() {
-
-    this.x = (Math.random() * W) ;
-    this.y = (Math.random() * H) ;
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
 
     this.vx = -1 + Math.random() * 2;
     this.vy = -1 + Math.random() * 2;
@@ -552,7 +545,6 @@ class Particle {
     };
   }
 }
-
 
 setParticles();
 
@@ -574,14 +566,12 @@ function update() {
     p.y += p.vy;
 
     if (p.x + p.radius > W) {
-      
       p.vx *= -1;
     } else if (p.x - p.radius < 0) {
       p.vx *= -1;
     }
 
     if (p.y + p.radius > H) {
-    
       p.vy *= -1;
     } else if (p.y - p.radius < 0) {
       p.vy *= -1;
@@ -624,6 +614,4 @@ function animloop() {
   requestAnimFrame(animloop);
 }
 
-function spinIcon() {
-  
-}
+function spinIcon() {}
