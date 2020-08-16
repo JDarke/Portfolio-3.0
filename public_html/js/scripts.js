@@ -54,8 +54,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
   getSectionDims();
   setTileWidth();
   setTileHeight();
-  checkNavScroll();
-
+  checkNavScroll(); 
+  setInterval(() => { 
+      checkNavScroll(); 
+  }, 700);
   $(".carousel__nav--up").click(function (e) {
     slideProjects("back");
   });
@@ -67,9 +69,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
   $(".navbar__link, .navbar__button, .navbar__button image").bind(
     "click",
     function (e) {
-      setTimeout(() => {
-        checkNavScroll();
-      }, 620);
+      if (!mobile) {
+        scrollUnlock();
+      }
+    }
+  );
+    
+  $("#scr-lk").bind(
+    "click", (e) => {
+      if (!mobile) {
+        scrollLock();
+      }
     }
   );
 
@@ -107,9 +117,9 @@ $(window).bind("mousewheel DOMMouseScroll touchmove", function (e) {
   }
   debounce_timer = window.setTimeout(function () {
     scrollTest(e);
-    console.log("Fire");
+    checkNavScroll();
   }, 100);
-  throttle(checkNavScroll(), 50);
+  //throttle(checkNavScroll(), 50);
 });
 
 function throttle(fn, wait) {
@@ -180,24 +190,29 @@ function scrollTest(e) {
       return e.originalEvent.wheelDelta;
     }
   };
+var delta = getDelta(e);
 
-  if (!mobile) {
-    if (getDelta(e) <= 0) {
+  if (!mobile /*&& currentSection === 'work'*/) {
+    if (delta <= 0) {
       // if scrolling down
       if (
         currentTile < numProjects &&
-        sectionDims[2].top <= getDelta(e) * -1 * 1
+        (sectionDims[2].top > delta * 3 && sectionDims[2].top < delta  *  -3)
       ) {
+        //console.log('SD: ' + sectionDims[2].top);
         scrollLock();
       } else {
         scrollUnlock();
       }
-    } else if (currentTile > 1 && sectionDims[2].top > getDelta(e) * -1 * 1) {
+    } else if (currentTile > 1 && (sectionDims[2].top < delta * 3 && sectionDims[2].top > delta  *  -3)) {  // fix this whole logic!
       //if scrolling up
       scrollLock();
+      //console.log('SD: ' + sectionDims[2].top);
     } else {
       scrollUnlock();
     }
+    console.log('Delta: ' + delta);
+    console.log('secTop: ' + sectionDims[2].bottom);
   }
 }
 
@@ -206,7 +221,7 @@ function checkNavScroll() {
 
   var i = 0;
   switch (true) {
-    case window.innerHeight - sectionDims[3].top > sectionDims[3].height / 2.3:
+    case window.innerHeight - sectionDims[3].top > sectionDims[3].height / 2:
       currentSection = "contact";
       i = 3;
       break;
@@ -223,6 +238,7 @@ function checkNavScroll() {
       i = 0;
   }
   for (var j = 0; j < navButtons.length; j++) {
+    //navButtons[j].blur();
     if (j !== i) {
       navButtons[j].style.opacity = "0.4";
       navButtons[j].style.filter = "grayscale(100)";
@@ -529,12 +545,9 @@ class Particle {
   constructor() {
     this.x = Math.random() * W;
     this.y = Math.random() * H;
-
     this.vx = -1 + Math.random() * 2;
     this.vy = -1 + Math.random() * 2;
-
     this.radius = 3;
-
     this.draw = function () {
       context.fillStyle = "rgba(120,120,120,.8)";
       context.beginPath();
@@ -585,11 +598,9 @@ function update() {
 
 function distance(p1, p2) {
   var dist,
-    dx = p1.x - p2.x,
-    dy = p1.y - p2.y;
-
+      dx = p1.x - p2.x,
+      dy = p1.y - p2.y;
   dist = Math.sqrt(dx * dx + dy * dy);
-
   if (dist <= minDist) {
     // Draw the line
     context.beginPath();
@@ -598,12 +609,10 @@ function distance(p1, p2) {
     context.lineTo(p2.x, p2.y);
     context.stroke();
     context.closePath();
-    var ax = dx / 5000000,
-      ay = dy / 5000000;
-
+    var ax = dx / 50000,
+      ay = dy / 50000;
     p1.vx -= ax;
     p1.vy -= ay;
-
     p2.vx += ax;
     p2.vy += ay;
   }

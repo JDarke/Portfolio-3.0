@@ -124,7 +124,7 @@
             </div>
           </a>
 
-          <a class="navbar__link" href="#work" onclick="scrollLock()">
+          <a class="navbar__link" href="#work" id="scr-lk">
             <div id="nav-work" class="navbar__button">
               <img
                 src="images/icon-work-active.svg"
@@ -153,11 +153,13 @@
     <div class="header-spacer"></div>
     <main class="scroll__container">
       <div id="home" class="l-page l-page__home">
+        <div class="overlay__splash"   style="background-color:#212224" data-anijs="if: scroll, on: window, do: fadeOut animated, before: scrollReveal"></div>
         <div class="l-page__content">
           <h1
             class="home__title"
-            style="font-family: 'Montserrat', sans-serif;"
+            style="font-family: 'Montserrat', sans-serif; opacity: 1;"
             data-anijs="if: scroll, on: window, do: bounceInLeft animated, before: scrollReveal"
+            
           >
             John
             <br />
@@ -167,6 +169,7 @@
             <p
               class="home__tagline"
               data-anijs="if: scroll, on: window, do: bounceInLeft animated, before: scrollReveal"
+              style="opacity: 1;"
             >
               Front-end developer
             </p>
@@ -174,6 +177,7 @@
             <button
               class="home__button button button--hollow button--cta"
               data-anijs="if: scroll, on: window, do: bounceInLeft animated, before: scrollReveal"
+              style="opacity: 1;"
             >
               <a href="#contact">Contact Me</a>
             </button>
@@ -209,7 +213,6 @@
                   alt="jdpic"
                 />
               </div>
-            
             </div>
           </div>
           <div class="l-page__text--about">
